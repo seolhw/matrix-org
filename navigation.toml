@@ -1,22 +1,22 @@
 header = [
-    { title = "Spec", href = "https://spec.matrix.org" },
-    { title = "About", href = "/about/" },
-    { title = "Blog", href = "/blog/" },
-    { title = "Docs", href="/docs/" },
-    { title = "Ecosystem", section = "ecosystem" },
-    { title = "Donate", href="/support" },
-    { title = "Try Matrix", href = "/try-matrix/", primary = true },
+    { title = "技术规范", href = "https://spec.matrix.org" },
+    { title = "关于", href = "/about/" },
+    { title = "博客", href = "/blog/" },
+    { title = "文档", href="/docs/" },
+    { title = "生态系统", section = "ecosystem" },
+    { title = "捐赠", href="/support" },
+    { title = "尝试 Matrix", href = "/try-matrix/", primary = true },
 ]
 
 footer_internal = [
-    { title = "Donate", href = "/support" },
-    { title = "Shop", href = "https://shop.matrix.org" },
-    { title = "Security Disclosure Policy", href = "/security-disclosure-policy" },
-    { title = "Security Hall of Fame", href = "/security-hall-of-fame" },
-    { title = "Code of Conduct", href = "/legal/code-of-conduct" },
-    { title = "Legal", href = "/legal" },
-    { title = "Contact", href = "/contact" },
-    { title = "Site Source", href = "https://github.com/matrix-org/matrix.org/" },
+    { title = "捐赠", href = "/support" },
+    { title = "商店", href = "https://shop.matrix.org" },
+    { title = "安全声明政策", href = "/security-disclosure-policy" },
+    { title = "安全名人堂", href = "/security-hall-of-fame" },
+    { title = "行为准则", href = "/legal/code-of-conduct" },
+    { title = "法律", href = "/legal" },
+    { title = "联系方式", href = "/contact" },
+    { title = "源码", href = "https://github.com/matrix-org/matrix.org/" },
 ]
 
 footer_external = [

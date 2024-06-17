@@ -1,89 +1,89 @@
 +++
-title = "Law Enforcement Guidelines"
+title = "法律指南"
 +++
 
-# Legal Guidelines
+# 法律指南
 
-Like any online service, the Matrix.org Foundation receives requests for information about users. Those requests come from government agencies, law enforcement, individuals, and companies. We aim to be transparent about the data we collect about our users, through our [privacy notice](https://matrix.org/legal/privacy-notice). This document describes the steps we take when engaging with law enforcement, and how we safeguard privacy rights. We also set out how law enforcement can send us requests.
+与其他在线服务一样，Matrix.org 基金会也会收到索取用户信息的请求。这些请求来自政府机构、执法部门、个人和公司。我们的目标是通过我们的[隐私声明](https://matrix.org/legal/privacy-notice) 使我们收集的用户数据透明化。本文件介绍了我们在与执法部门接触时所采取的步骤，以及我们如何保障隐私权。我们还规定了执法部门如何向我们发送请求。
 
-Before revealing any non-public information about a site, an account, or a user, we require a valid subpoena, search warrant, or court order. The only exception is when we have a good faith belief that there is an emergency involving imminent danger of death or serious physical injury.
-
-
-## Law Enforcement Requests
-
-To make a request, you will need a warrant issued by a UK authority in compliance with the [UK Investigatory Powers Act of 2016](https://www.legislation.gov.uk/ukpga/2016/25/contents/enacted) (“the Act”). We respond to requests from the United Kingdom only, in the form of authorisations which comply with article 66 of the aforementioned Act. Law enforcement agencies from outside the UK may obtain these types of authorisations through the [Mutual Legal Assistance Treaty (MLAT)](https://www.gov.uk/guidance/mutual-legal-assistance-mla-requests). 
-
-These requests must be sent to [abuse@matrix.org](mailto:abuse@matrix.org), and should include the following:
+在披露有关网站、账户或用户的任何非公开信息之前，我们需要有效的传票、搜查令或法院命令。唯一的例外情况是，我们有充分的理由相信存在涉及迫在眉睫的死亡或严重人身伤害危险的紧急情况。
 
 
+## 执法请求
 
-* Details of the authorising officer, as per 61 (1) of the Act;
-* Details of the purpose for the request, as per 61 (7) of the Act.
+要提出请求，你需要英国当局根据[2016 年英国调查权力法案](https://www.legislation.gov.uk/ukpga/2016/25/contents/enacted) （以下简称 "法案"）签发的授权令。我们仅以符合上述法案第 66 条规定的授权形式回应来自英国的请求。英国以外的执法机构可通过[法律互助条约 (MLAT)](https://www.gov.uk/guidance/mutual-legal-assistance-mla-requests)获得此类授权。
 
-We will only transfer information using end to end encryption.
-
-
-## Emergency Requests from Government Agencies/Law Enforcement
-
-We may disclose user information to government or law enforcement agencies – without a warrant  – if we have a good faith belief that an emergency involving** imminent danger of death or serious physical injury** requires disclosure of information related to the emergency without delay. 
-
-Send your emergency request to [abuse@matrix.org](mailto:abuse@matrix.org) and include “emergency” in the subject line.
+这些请求必须发送至 [abuse@matrix.org](mailto:abuse@matrix.org)，并应包括以下内容：
 
 
 
-* Include all information you have about the situation so that we may evaluate the urgency of your request, making sure that you indicate if the request is confidential.
-* Include the details of your agency, and your contact details.
-* If you make no mention of confidentiality, we will notify the user(s) affected.
+* 根据该法第 61(1)条，授权官员的详细资料；
+* 根据法案第 61 (7)条，申请目的的详细信息。
+
+我们只会使用端对端加密传输信息。
 
 
-## What Information Do We Have?
+## 政府机构/执法部门的紧急请求
 
-The data available on Matrix.org users is limited to that which is described in our [privacy notice](https://matrix.org/legal/privacy-notice). As per the Matrix protocol, homeserver administrators are unable to view data which is end-to-end encrypted, making this type of data out of scope for these requests. 
+如果我们有充分理由相信，在涉及**迫在眉睫的死亡或严重人身伤害**的紧急情况下，需要立即披露与紧急情况有关的信息，我们可以在没有授权令的情况下向政府或执法机构披露用户信息。
 
-We do not voluntarily provide governments with access to data about users for any reason, including for the purposes of law enforcement, intelligence gathering, or other surveillance. As noted above, we only provide information to third parties after receiving a valid search warrant.
-
-
-## Notification to Matrix.org Users
-
-We aim for total transparency with our users when legal requests for information or complaints affect their account. It is our policy to notify users and provide them with a copy of any legal requests regarding their account or site, unless we are prohibited from doing so by the warrant. When the prohibition from notifying users expires, we will notify users and provide them with a copy of the legal request at that time. 
+请将你的紧急申请发送至 [abuse@matrix.org](mailto:abuse@matrix.org)，并在主题行注明 "紧急"。
 
 
-## Preservation Requests by Government and Law Enforcement Agencies
 
-It is our policy to notify users and provide them with a copy of any legal requests regarding their account, unless we are prohibited from doing so by a valid warrant issued in the UK, as described in the sections below. Our policy of notifying users about requests to preserve their information is meant to protect user privacy and promote transparency, while also avoiding interference with legitimate investigations of criminal activity.
-
-Preservation requests may only be submitted by government and law enforcement agencies conducting a criminal investigation in which the information sought is relevant. We will preserve records for 90 days in response to a valid request, which the government or law enforcement agency can extend upon request.
-
-We will act upon requests from non-UK law enforcement agencies only when these originate via the Mutual Legal Assistance Treaty process (MLAT).
-
-Send your preservation requests to [abuse@matrix.org](mailto:abuse@matrix.org). 
+* 包括你所掌握的有关情况的所有信息，以便我们评估你的申请的紧迫性，并确保你注明申请是否保密。
+* 包括贵机构的详细情况和你的详细联系方式。
+* 如果你未提及保密性，我们将通知受影响的用户。
 
 
-## Other types of requests
+## 我们拥有哪些信息？
+
+Matrix.org 用户的可用数据仅限于我们的[隐私声明](https://matrix.org/legal/privacy-notice)中所描述的数据。根据 Matrix 协议，homeserver管理员无法查看端到端加密数据，因此此类数据不在这些请求的范围之内。
+
+我们不会出于任何原因（包括执法、情报收集或其他监控目的）主动向政府提供用户数据。如上所述，我们只有在收到有效搜查令后才会向第三方提供信息。
 
 
-### Reporting Terms of Service Violations
+## 通知 Matrix.org 用户
 
-If you believe that a user or room is violating our [Terms and Conditions](https://matrix.org/legal/terms-and-conditions), please report this information via [abuse@matrix.org](mailto:abuse@matrix.org) providing as much information as possible, and we will take action as appropriate. 
-
-We do not remove content based on disagreements, allegations or breaches of rules related to specific communities. Removal of content will only occur when it breaches our [Terms](https://matrix.org/legal/terms-and-conditions). We may refer information about accounts sharing illegal content to the relevant authorities.
+当法律要求提供信息或投诉影响到用户的帐户时，我们的目标是对用户完全透明。我们的政策是通知用户并向他们提供有关其帐户或网站的任何法律要求的副本，除非搜查令禁止我们这样做。当通知用户的禁令到期时，我们将通知用户并提供法律要求的副本。
 
 
-### Requests for Takedown of Copyrighted Content
+## 政府和执法机构的保存要求
 
-Matrix.org complies with properly formatted notices sent in accordance with the Digital Millennium Copyright Act. More information about our process and a DMCA takedown notice submission form can be found [here](https://matrix.org/legal/copyright-notice).
+我们的政策是通知用户并向他们提供有关其帐户的任何法律要求的副本，除非英国签发的有效授权令禁止我们这样做，如下文所述。我们通知用户有关保存其信息请求的政策旨在保护用户隐私和提高透明度，同时避免干扰对犯罪活动的合法调查。
 
+只有进行刑事调查的政府和执法机构才可提交保存请求，且所寻求的信息与之相关。我们将根据有效请求将记录保存 90 天，政府或执法机构可根据请求延长保存期限。
 
-## Our stances
+只有当非英国执法机构通过《法律互助条约》（MLAT）程序提出申请时，我们才会采取行动。
 
-
-### Who Is Liable for Content Hosted on Matrix.org?
-
-We do not control or endorse the materials or message content found in any rooms or communities. To the maximum extent permitted by law, Matrix.org will have no liability related to user materials arising under intellectual property rights, libel, privacy, publicity, obscenity or other laws. Matrix.org also disclaims all liability with respect to the misuse, loss, modification or unavailability of any user messages or files.
+请将保存请求发送至 [abuse@matrix.org](mailto:abuse@matrix.org)。
 
 
-### On Back Doors and Encryption
+## 其他类型的请求
 
-We are strong advocates for encryption as a tool to support everyone’s human right to privacy. Matrix.org will **never** support encryption backdoors and will only share information which is requested following the above guidelines.
 
-For more information on our approach to encryption and abuse management, please read through [this blog post](https://matrix.org/blog/2020/10/19/combating-abuse-in-matrix-without-backdoors).
+### 报告违反服务条款的行为
+
+如果你认为某个用户或聊天室违反了我们的[条款和条件](https://matrix.org/legal/terms-and-conditions)，请通过[abuse@matrix.org](mailto:abuse@matrix.org)报告此信息，并提供尽可能多的信息，我们将采取适当的措施。
+
+我们不会因为意见分歧、指控或违反特定社区的相关规则而删除内容。只有在内容违反我们的 [条款](https://matrix.org/legal/terms-and-conditions) 时，我们才会删除内容。我们可能会将分享非法内容的账户信息提交给相关部门。
+
+
+### 要求删除受版权保护的内容
+
+Matrix.org 遵照《數位千禧年版權法案》發出格式正確的通知。有关我们的流程和《数字千年版权法案》移除通知提交表的更多信息，请参阅 [此处](https://matrix.org/legal/copyright-notice)。
+
+
+## 我们的立场
+
+
+### 谁对 Matrix.org 上的内容负责？
+
+我们不控制或认可任何聊天室或社区中的资料或消息内容。在法律允许的最大范围内，Matrix.org 不承担与用户材料有关的知识产权、诽谤、隐私、公开、淫秽或其他法律责任。Matrix.org 也不对任何用户信息或文件的滥用、丢失、修改或不可用承担任何责任。
+
+
+### 关于后门和加密
+
+我们坚决主张将加密作为支持每个人隐私权的工具。Matrix.org 絕不***支持加密後門，並且只會分享依據上述準則所要求的資訊。
+
+有关我们的加密和滥用管理方法的更多信息，请阅读[本博文](https://matrix.org/blog/2020/10/19/combating-abuse-in-matrix-without-backdoors)。

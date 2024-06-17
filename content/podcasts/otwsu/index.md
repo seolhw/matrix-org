@@ -1,15 +1,15 @@
 +++
-title = "Open Tech Will Save Us"
+title = "开放技术将拯救我们"
 template = "otwsu.html"
 aliases = ["/open-tech-will-save-us/"]
 +++
 
-[Join the live chat now!](https://matrix.to/#/#otwsu:matrix.org)
+[现在就加入即时聊天！](https://matrix.to/#/#otwsu:matrix.org)
 
-Open Tech Will Save Us is a virtual meetup, taking the form of a monthly live 
-video stream broadcasting on the last Wednesday of every month at 6pm Paris 
-time.
+开放技术将拯救我们 "是一个虚拟聚会，其形式为每月最后一个星期三的视频直播 
+视频直播的形式，时间是巴黎时间每月最后一个星期三下午 6 点 
+时间。
 
-We discuss issues relating to technology, especially the importance of Open, 
-Interoperable standards, and how they can enable decentralised tech to keep our 
-data private while still enabling communication.
+我们讨论与技术有关的问题，尤其是开放技术的重要性、 
+互操作性标准的重要性，以及这些标准如何使去中心化技术在保证数据私密性的同时还能实现通信。
+数据的私密性，同时又能实现通信。

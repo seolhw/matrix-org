@@ -1,90 +1,70 @@
 +++
-title = "Matrix for Instant Messaging"
+title = "Matrix 即时通讯"
 weight = 100
 template = "docs/with_menu.html"
 aliases = ["/docs/", "/docs/chat_basics/"]
 [extra]
 updated = "2023-06-16T16:00:00Z"
 meta_description = """
-Matrix is an open protocol many apps can use for secure, decentralised
-communications. Your first steps with Matrix start here.
+Matrix 是一种开放式协议，许多应用程序都可以使用它来进行安全的、去中心化的
+通信。使用 Matrix 的第一步就从这里开始。
 """
 +++
 
-## What is it?
+## Matrix 是什么？
 
-Matrix works a little like email, but instantaneous and secure:
+Matrix 的工作原理有点像电子邮件，但它是即时和安全的：
 
-- You need to register an account at a provider
-- Whatever your provider is, you can talk to people using other providers
-- In the same way you can use Outlook or Thunderbird with the same email
-  account, you can use different Matrix apps for the same Matrix account.
+- 你需要在提供者处注册一个账户
+- 无论你的服务提供者是谁，你都可以与使用其他服务提供者的人通话
+- 就像你可以用同一个电子邮件账户使用 Outlook 或 Thunderbird 一样，你也可以用不同的 Matrix
+  账户使用 Outlook 或 Thunderbird 的方式一样，你也可以为同一个 Matrix 账户使用不同的 Matrix 应用程序。
 
-Several apps exist, but we're going to go with Element for the sake of
-simplicity, as it's among the most fully-featured Matrix apps on the market.
+有几种应用程序，但为了简单起见，我们将使用 Element。
+因为它是市场上功能最全的 Matrix 应用程序之一。
 
-Once you are more comfortable with the basics and if you want to use another
-app, head to the [clients](/ecosystem/clients) section of this website.
+一旦你对基本操作比较熟悉，如果你想使用其他
+应用程序，请访问本网站的 [客户端](/ecosystem/clients) 部分。
 
 {{ page_card(
-    title="Clients",
+    title="客户端",
     path="/ecosystem/clients",
-    summary="Discover Matrix clients and pick one best suited for your needs
-             once you're comfortable with the basics.")
+    summary="当你熟悉了基础知识后，可以前往了解 Matrix 客户端，选择最适合你需求的客户端。")
 }}
 
-## Creating a Matrix account
+## 创建 Matrix 账户
 
-You can use any provider you want. The experts can even set-up their own
-provider, but it's not a requirement at all. It is worth noting that when you
-create an account on a provider, you can use third-party tooling to migrate the
-chat rooms ownership to your new account, but this can be cumbersome in
-particular for DMs.
+你可以使用任何你想要的提供者。专家甚至可以设置自己的提供者，但这并不是必须的。值得注意的是时，你可以使用第三方工具将聊天室所有权迁移到你的新账户。
 
-The Matrix.org Foundation is a public provider everybody can register an account
-on for free. For your first steps, the simplest is to register an account there.
+Matrix.org 基金会是一个公共提供者，每个人都可以在上面免费注册一个账户。对于你的第一步，最简单的方法就是在那里注册一个账户。
 
-To register an account, you need to use an app. In our case, we're going to get
-started with Element, but you can seamlessly move to using any other client at
-any point in time, even if you started with Element.
+要注册账户，你需要使用一个应用程序。在我们的例子中，选择了 Element 客户端，但实际上，你可以使用任何客户端，也可以选择某个客户端后，迁移到其他客户端。
 
-Go to [app.element.io](https://app.element.io), and click on "Create Account".
-You should land on the following page.
+访问 [app.element.io](https://app.element.io)，点击 "创建账户"。
+你将进入以下页面。
 
 {{ 
     figure(
         img="../element-io-sign-up.png",
-        caption="Sign up page of app.element.io")
+        caption="app.element.io 的登录页")
 }}
 
-For simplicity you can connect with a Google, Facebook, Apple, GitHub or GitLab
-account if you have any of these. They will be notified that you're using your
-account to create a Matrix one. This is sometimes called "Social Login".
 
-If you're more privacy conscious, you can also register by entering a username,
-password and email in the form below the Social Login buttons.
+为简单起见，你可以使用 Google、Facebook、Apple、GitHub 或 GitLab 的账户直接登录。登录成功后，会自动创建一个 Matrix 账户。这被称为"社交登录"。
 
-You might be challenged with a captcha (a set of tiles or pictures where you
-need to find certain objects), and will be asked to accept Matrix.org's terms
-and conditions.
+如果你比较注重隐私，也可以在下面的表格中输入用户名、密码和电子邮件进行注册。
 
-After accepting the terms, you will end on a screen that asks you to confirm
-your email address. You can safely close this window.
+你可能会遇到验证码，并被要求接受 Matrix.org 的隐私条款和用户协议。
 
-Check your inbox, and click the link to verify your email address. The link will
-bring you to the homepage of Element, the Matrix web application to participate
-to Matrix conversations.
+接受条款后，最后会出现一个屏幕，要求你确认电子邮件地址。你可以放心地关闭此窗口。
+
+检查收件箱，然后单击链接验证电子邮件地址。该链接将将带你进入 Matrix 网络应用程序 Element 的主页，以参与 Matrix 对话。
 
 {{ figure(
     img="../element-landing-page.png"
-    caption="Landing page of Element after login")
+    caption="登录成功后，进入到 loading 页面")
 }}
 
-You now have an account, and are using the web version of Element. We recommend
-you to [download the desktop version of Element](https://element.io/download),
-which makes following Matrix links much easier. If you don't want to download a
-desktop app you can carry on with the web version.
+你现在拥有一个账户，正在使用网页版的 Element。我们建议下载[桌面版Element](https://element.io/download)、这样可以更方便地跟踪 Matrix 链接。如果你不想下载桌面应用程序，可以继续使用web。
 
-Now you can either decide to create a private group chat to experiment with and
-invite friends later, or join public rooms to participate in existing
-conversations.
+现在，你可以选择创建一个私人群聊来进行测试，然后邀请朋友，或者加入公共社群参与已有的对话。

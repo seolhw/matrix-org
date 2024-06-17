@@ -1,19 +1,19 @@
 +++
-title = "Rooms & Events"
+title = "聊天室和事件"
 weight = 200
 template = "docs/with_menu.html"
 [extra]
 updated = "2023-02-23T08:00:00Z"
 meta_description = """
-Matrix relies on rooms to distribute events across servers and clients. Rooms
-have a hierarchy based on power levels. Each homeserver has its own copy of all
-the rooms all their users belong to.
+Matrix 依靠聊天室在服务器和客户端之间分配事件。聊天室
+有一个基于功率级别的层次结构。每个homeserver都有自己的
+聊天室的副本。
 """
 +++
 
-Users on a server can send *events* into *rooms*. An event is a particular json
-object, describing what a user is trying to do (join a room, send a message,
-update a specific value…). An event will look like the following:
+服务器上的用户可以向*聊天室*发送*事件*。事件是一个特定的 json对象，描述用户要做的事情（加入聊天室、发送信息、更新特定值......）。
+
+一个事件的数据如下
 
 ```json
 {
@@ -34,146 +34,113 @@ update a specific value…). An event will look like the following:
 }
 ```
 
-In the case of instant messaging, clients display rooms very similarly to Slack,
-Discord or IRC channels. Most of the events in such rooms are messages. Rooms
-have a unique technical identifier, and zero or more human-readable aliases.
-Aliases are made of a room name, and a server part, and are sometimes referred
-to as "addresses". A typical room alias would be:
+就即时通讯而言，客户端显示聊天室的方式与 Slack 、Discord 或 IRC 频道非常相似。这些聊天室中的大部分事件都是消息。
+聊天室有一个唯一的技术标识符，以及零个或多个人类可读的别名。
+别名由聊天室名称和服务器部分组成，有时也被称为 "地址"。
+一个典型的聊天室别名是
 
 ```
 #goodfriends:example.com
 ```
 
-From a technical perspective, a room is a series of json objects. The schema
-below represents a room with dumbed down events. It is up to the clients to
-read, parse, and display the events properly.
+从技术角度看，聊天室是一系列 json 对象。下面的模式表示的是一个具有简化事件的聊天室。客户端可以读取、解析并正确显示事件。
 
 {{ figure(
     img="./events.svg",
-    caption="The room #goodfriends:example.com with simplified events")
+    caption="简化事件的 #goodfriends:example.com 聊天室")
 }}
 
-## Local copies
+### 本地副本
 
-Homeservers are federated: the Matrix specification defines a [Sever-Server API](https://spec.matrix.org/latest/server-server-api/)
-(also known as Federation API) to describe interactions between servers.
-Whenever a user is in a room, their homeserver needs to have a local copy of
-that room.
+homeserver是联合的：
+Matrix 规范定义了 [Sever-Server API](https://spec.matrix.org/latest/server-server-api/)（又称联盟 API）来描述服务器之间的交互。
+每当用户进入某个聊天室时，其 homeserver 都需要拥有该聊天室的本地副本。
 
-For example, if `@alice:example.com` is the first user from `example.com` to try
-to join `#goodfriends:matrix.org`, then her homeserver is going to reach out to
-`matrix.org` to get a copy of the room. `example.com` and `matrix.org` then stay
-in touch to synchronise their copy of the room.
+例如，如果 `@alice:example.com` 是来自 `example.com` 的第一个用户尝试加入 `#goodfriends:matrix.org`，那么她的 homeserver 就会向 `Matrix.org` 获取聊天室副本。然后，`example.com`和`matrix.org`会保持
+保持对该聊天室的同步。
 
 {{ figure(
     img="./room_federated.svg",
-    caption="Three homeservers keeping their local copy of the room in sync")
+    caption="三台 homeserver 保持聊天室本地副本同步")
 }}
 
-## Administration & privileges
+### 管理与权限
 
-Whenever the homeserver receives new events, it's in charge of parsing them,
-perform checks on the event, and take action accordingly (e.g. sending messages
-from users on the homeserver to other participating homeservers, or distributing
-messages from other participating homeservers to users). The expected behaviour
-of homeservers is described fully in the [Matrix Specification](https://spec.matrix.org).
+每当 homeserver 接收到新事件，它就会负责解析这些事件、对事件进行检查，并采取相应的措施（例如，向其他参与的 homeserver 发送信息，或将其他参与的 homeserver 发送的信息）。
+homeserver的预期行为[Matrix规范](https://spec.matrix.org)对 homeserver 的预期行为作了全面描述。
 
-It could seem dangerous to think that everyone has their own local copy of the
-room. Doesn't that mean anyone can become administrator of the room and do nasty
-things? Fortunately, no. The privileges of people in the room are defined by
-Power Levels.
+如果认为每个人都有自己的本地聊天室。这岂不是意味着任何人都可以成为聊天室的管理员，并做出令人讨厌的事情？
+幸运的是，不会。聊天室里的人的权限是由以下方面定义的
 
-Power levels define a hierarchy in the room. All of the actions in a room
-require a minimum power level. Posting a message in a room requires having the
-power level 0, redacting someone else's message usually requires having power
-level 50, changing the room address usually requires having power level 100.
+权力等级。
 
-For more details on power levels, please check the relevant section of the
-community management documentation.
+权力等级定义了聊天室的等级制度。聊天室里的所有行动都需要最低权限级别。在聊天室里发布信息需要有 0 级，编辑别人的信息通常需要有 50 级的权限，更改聊天室地址通常需要有 100 级的权限。
+
+有关权限等级的更多详情，请查阅社区管理文档的相关章节。
+社区管理文档的相关部分。
 
 {{ page_card(path="/docs/communities/moderation/#power-levels",
-    title="Power Levels",
-    summary="Discover how power levels are used in practice.")
+    title="权力级别",
+    summary="了解实际中如何使用权力级别")
 }}
 
-### At room creation
+### 在创建聊天室时
 
-A power level is an integer usually between 0 and 100 bound to an account in a
-room. According to the spec recommendations, when someone creates a room, their
-account gets power level 100 in that room. So if Alice creates the room
-`#goodfriends` on example.com, her account `@alice:example.com` will get the
-power level 100 in all the local copies of `#goodfriends:example.com`, whether
-the copy is on example.com, matrix.org or ergaster.org.
+权力等级是一个通常介于 0 和 100 之间的整数，与聊天室中的某个账户绑定。根据规范建议，当某人创建了一个聊天室，他的账户在该聊天室中的权限等级为 100。
+如果 Alice 在 example.com 上创建了`#goodfriends`聊天室，那么她的账户`@alice:example.com`将在所有副本上获得100级的权限，无论该副本是在 example.com 上，还是在 ergaster.com 上。
 
 {{ figure(
     img="./room_creation.svg",
-    caption="Alice creates the room and automatically gets Power Level 100")
+    caption="Alice 创建聊天室并自动获得 100 级能量")
 }}
 
-### At room join
+### 聊天室加入时
 
-When someone else joins the room, whether they are on the same homeserver as the
-creator or another homeserver, by default they are assigned the power level 0.
-If Bob on `ergaster.org` joins `#goodfriends:example.com`, his server is going to
-ask Alice's `example.com` a local copy of the room, and stay in sync with it.
+当其他人加入聊天室时，无论他们是与创建者在同一 homeserver 上，还是在其他 homeserver 默认情况下他们都会被分配到 0 级权限。
+如果 `ergaster.org` 上的 Bob 加入`#goodfriends:example.com`，他的服务器将向 Alice 的`example.com` 请求该聊天室的本地副本，并与之保持同步。
 
 {{ figure(
     img="./room_join.svg",
-    caption="Bob joins the room and automatically gets Power Level 0")
+    caption="Bob 加入聊天室并自动获得 0 级权限")
 }}
 
-If Carol joins from her homeserver `matrix.org`, she will also get the power level
-0.
+如果卡罗尔从她的 homeserver `matrix.org` 加入，她也将获得 0 级别的权限
 
 {{ figure(
     img="./room_federated.svg",
-    caption="Carol joins the room and automatically gets Power Level 0 as well.
-    The power levels are the same on every local copy of the room.")
+    caption="卡罗尔加入聊天室后，也会自动获得 0 级权限，聊天室的每个本地副本都是完全相同的。")
 }}
 
-### Altering a local copy of the room
+### 更改聊天室的本地副本
 
-Let's now consider Walter. Walter is the homeserver administrator of
-`example.com`, the homeserver Alice used to create the `#goodfriends:example.com`
-room.
+现在我们来看看 Walter。Walter 是 example.com 的 homeserver 管理员，Alice 使用该 homeserver 创建了 #goodfriends:example.com 聊天室。
 
-When he joins the room, Walter gets the power level 0 by default, as everyone
-else.
+加入聊天室时，Walter 的默认权限级别为 0，和其他人一样。
 
 {{ figure(
     img="./walter_joins.svg",
-    caption="Walter joins the room and gets Power Level 0: he is a regular user")
+    caption="Walter 加入聊天室并获得 0 级权限：他是普通用户")
 }}
 
-If Walter fiddled with its homeserver database to alter its local copy of the
-room, his change would not propagate: nobody has granted him power level 0: when
-the other homeservers would want to update their local copy of the room, they
-would reject the change making Walter administrator of the room.
+如果 walter 在 homeserver 数据库中做了手脚，变更了本地的聊天室的本地副本，他的变更将不会传播，都会是 0 级权限，当其他 homeserver 想更新它们的聊天室本地副本时，它们会拒绝 walter 的更改。
 
-### Impersonating others
+### 冒充他人
 
-Some homeserver implementations like Synapse have a non-standard [Admin API](https://matrix-org.github.io/synapse/latest/usage/administration/admin_api/index.html)
-and more particularly an [API to make someone the room admin](https://matrix-org.github.io/synapse/latest/admin_api/rooms.html#make-room-admin-api).
-This doesn't mean homeserver administrators can't take over rooms as they
-please.
+一些 homeserver（如 Synapse）有一个非标准的[管理 API](https://matrix-org.github.io/synapse/latest/usage/administration/admin_api/index.html)。
+尤其是[让某人成为聊天室管理员的 API](https://matrix-org.github.io/synapse/latest/admin_api/rooms.html#make-room-admin-api)。
+这并不意味着 homeserver 管理员不能随意接管聊天室。
 
-When Walter calls the Make Room Admin API, Synapse is going to control Alice's
-account to grant Walter the same Power Level as her. Alice is Power Level 100,
-she is allowed to promote Walter to the same Power Level. This is valid
-according to the Matrix Spec, so when the other homeservers will update their
-local copy of the room they will accept the change.
+当 Walter 调用 "设置聊天室管理员" API 时，Synapse 将控制 Alice 的账户，授予 Walter 与她相同的 "权力等级"。Alice 的权力等级是 100，她可以将 Walter 提升到与她相同的 "权力等级"。这是有效的
+因此，当其他 homeserver 更新它们的聊天室的本地副本时，就会接受这一变更。
 
 {{ figure(
     img="./walter_escalate_ok.svg",
-    caption="Alice's account is used by Synapse to give Walter the same power level")
+    caption="Alice 的账户被 "突触 "用来为沃尔特提供相同的权力等级")
 }}
 
-What if Walter was the homeserver administrator of `ergaster.org` instead? Every
-user of `ergaster.org` in this room have the Power Level 0. If Walter called this API,
-his homeserver would only be able to control a user with Power Level 0,
-and would not be able to promote him.
+如果沃尔特是 `ergaster.org` 的 homeserver 管理员呢？每个 ergaster.org 的用户都拥有 0 级权限。如果 Walter 调用此 API，他的 homeserver 就只能控制权力级别为 0 的用户，而不能提升他的权力级别，无法对其进行晋升。
 
 {{ figure(
     img="./walter_escalate_ko.svg",
-    caption="Walter cannot control any account to escalate his power level")
+    caption="Walter 无法控制任何账户来提升自己的权力等级")
 }}

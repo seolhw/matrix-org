@@ -1,5 +1,5 @@
 +++
-title = "End-to-End Encryption implementation guide"
+title = "端到端加密实施指南"
 weight = 900
 template = "docs/with_menu.html"
 aliases = ["/docs/guides/end-to-end-encryption-implementation-guide", "/docs/legacy/e2e-implementation/"]
@@ -7,140 +7,103 @@ aliases = ["/docs/guides/end-to-end-encryption-implementation-guide", "/docs/leg
 [extra]
 updated = "2023-02-08T08:00:00Z"
 meta_description = """
-This guide is intended for authors of Matrix clients who wish to add support for
-end-to-end encryption. It is highly recommended that readers be familiar with
-the Matrix protocol and the use of access tokens before proceeding.
+本指南面向希望添加端到端加密支持的 Matrix 客户端作者。
+端到端加密支持的 Matrix 客户端作者。强烈建议读者熟悉
+Matrix 协议和访问令牌的使用。
 """
 +++
 
-## Implementing End-to-End Encryption in Matrix clients
+## 在 Matrix 客户端中实现端到端加密
 
-This guide is intended for authors of Matrix clients who wish to add support for
-end-to-end encryption. It is highly recommended that readers be familiar with
-the Matrix protocol and the use of access tokens before proceeding.
+本指南面向希望添加端到端加密支持的 Matrix 客户端作者。
+端到端加密支持的 Matrix 客户端作者。强烈建议读者熟悉
+Matrix 协议和访问令牌的使用。
 
-### Olm/Megolm implementations
+### Olm/Megolm 实现
 
-End-to-end encryption in Matrix is based on the Olm and Megolm cryptographic ratchets. The recommended starting point for any client authors is with the [vodozemac](https://github.com/matrix-org/vodozemac/), which contains implementations of all the cryptographic methods required.  [libolm](https://gitlab.matrix.org/matrix-org/olm) is also available.
+Matrix 中的端到端加密基于 Olm 和 Megolm 加密棘轮。建议客户端作者从 [vodozemac](https://github.com/matrix-org/vodozemac/)入手，其中包含所需的所有加密方法的实现。 [libolm](https://gitlab.matrix.org/matrix-org/olm) 也可供使用。
 
-### Devices
+### 设备
 
-We have a particular meaning for "device". As a user, I might have several
-devices (a desktop client, some web browsers, an Android device, an iPhone,
-etc). When I first use a client, it should register itself as a new device. If
-I log out and log in again as a different user, the client must register as a
-new device. Critically, the client must create a new set of keys (see below)
-for each "device".
+我们对 "设备 "有特殊的理解。作为用户，我可能有几个设备（一个桌面客户端、一些网络浏览器、一个安卓设备、一个 iPhone、等等）。
+当我第一次使用客户端时，它应该将自己注册为一个新设备。如果注销并以不同用户身份再次登录，客户端必须注册为新设备。
+重要的是，客户端必须为每个 "设备 "创建一组新的密钥（见下文）
 
-The longevity of devices will depend on the client. In the web client, we create
-a new device every single time you log in. In a mobile client, it might be
-acceptable to reuse the device if a login session expires,
-**provided** the user is the same. **Never** share keys between different
-  users.
+设备的寿命取决于客户端。在网络客户端中，我们每次登录都会创建一个新设备。在移动客户端中，如果登录会话过期，重复使用设备也是可以接受的、
+**前提是**用户是相同的。
+**切勿在不同用户之间共享密钥，这是绝对不允许的，非常危险的**。
 
-Devices are identified by their `device_id` (which is unique within the scope of
-a given user). By default, the `/login` and `/register` endpoints will
-auto-generate a `device_id` and return it in the response; a client is also
-free to generate its own `device_id` or, as above, reuse a device, in which
-case the client should pass the `device_id` in the request body.
+设备通过 `device_id`（在特定用户范围内是唯一的）来识别。默认情况下，"/登录 "和"/注册 "端点将自动生成一个 `device_id` 并在响应中返回；客户端也可自由生成自己的 `device_id` 或如上所述重复使用一个设备，在这种情况下
+在这种情况下，客户端应在请求正文中传递 `device_id`。
 
-The lifetime of devices and `access_token`s are closely related. In the simple
-case where a new device is created each time you log in, there is a one-to-one
-mapping between a `device_id` and an `access_token`. If a client reuses a
-`device_id` when logging in, there will be several `access_token`s associated
-with a given `device_id` - but still, we would expect only one of these to be
-active at once (though we do not currently enforce that in Synapse).
+设备的生命周期与 "访问令牌" 密切相关。在简单的情况下，每次登录都会创建一个新设备，因此`device_id`和`access_token`之间存在一对一的映射关系。
+如果客户端在重复使用 `device_id` ，就会有多个 `access_token` 与给定的 `device_id` 相关联。
 
-### Keys used in End-to-End encryption
+但我们仍然希望只有一个访问令牌同时处于活动状态（虽然我们并不希望在同一时间有多个访问令牌同时处于活动状态）。
 
-There are a number of keys involved in encrypted communication: a summary of
-them follows.
+### 端到端加密中使用的密钥
 
-### Ed25519 fingerprint key pair
+加密通信中涉及到许多密钥：以下是它们的摘要。
 
-Ed25519 is a public-key cryptographic system for signing messages. In Matrix,
-each device has an Ed25519 key pair which serves to identify that device. The
-private part of the key pair should never leave the device, but the public part
-is published to the Matrix network.
+摘要如下。
 
-### Curve25519 identity key pair
+#### Ed25519 指纹密钥对
 
-Curve25519 is a public-key cryptographic system which can be used to establish a
-shared secret. In Matrix, each device has a long-lived Curve25519 identity key
-which is used to establish Olm sessions with that device. Again, the private
-key should never leave the device, but the public part is signed with the
-Ed25519 fingerprint key and published to the network.
+Ed25519 是一种用于签署信息的公钥加密系统。在 Matrix 中每个设备都有一个用于识别该设备的 Ed25519 密钥对。密钥对的私有部分永远不会离开设备，但公钥部分会发布到 Matrix 网络。
 
-Theoretically we should rotate the Curve25519 identity key from time to time,
-but we haven't implemented this yet.
+#### Curve25519 身份配对密钥
 
-### Curve25519 one-time keys
+Curve25519 是一种公钥加密系统，可用于建立共享密钥。在 Matrix 中，每台设备都有一个长期有效的 Curve25519 身份密钥，用于建立 Olm 会话。
+用于与该设备建立 Olm 会话。同样，私钥永远不会离开设备，但公钥部分会用Ed25519 指纹密钥签名并发布到网络上。
 
-As well as the identity key, each device creates a number of Curve25519 key
-pairs which are also used to establish Olm sessions, but can only be used once.
-Once again, the private part remains on the device.
+理论上，我们应该不时地轮换 Curve25519 身份密钥，但我们还没有实现这一点。
 
-At startup, Alice creates a number of one-time key pairs, and publishes them to
-her homeserver. If Bob wants to establish an Olm session with Alice, he needs
-to claim one of Alice's one-time keys, and creates a new one of his own. Those
-two keys, along with Alice's and Bob's identity keys, are used in establishing
-an Olm session between Alice and Bob.
+#### Curve25519 一次性密钥
 
-### Megolm encryption keys
+除了身份密钥外，每个设备还会创建一些 Curve25519 密钥对。这些密钥对也用于建立 Olm 会话，但只能使用一次。
+私人部分同样保留在设备上。
 
-The Megolm key is used to encrypt group messages (in fact it is used to derive
-an AES-256 key, and an HMAC-SHA-256 key). It is initialised with random data.
-Each time a message is sent, a hash calculation is done on the Megolm key to
-derive the key for the next message. It is therefore possible to share the
-current state of the Megolm key with a user, allowing them to decrypt future
-messages but not past messages.
+启动时，Alice 会创建一些一次性密钥对，并将它们发布到她的 homeserver 上。
+如果 Bob 想与 Alice 建立 Olm 会话，他需要认领 Alice 的一个一次性密钥，并创建一个自己的新密钥。这这两个密钥以及 Alice 和 Bob 的身份密钥将用于用于在 Alice 和 Bob 之间的 Olm 会话。
 
-### Ed25519 Megolm signing key pair
+#### Megolm 加密密钥
 
-When a sender creates a Megolm session, he also creates another Ed25519 signing
-key pair. This is used to sign messages sent via that Megolm session, to
-authenticate the sender. Once again, the private part of the key remains on the
-device. The public part is shared with other devices in the room alongside the
-encryption key.
+Megolm 密钥用于加密群组信息（事实上，它是用来推导 AES-256 密钥的，而 AES-256 密钥则是用于加密群组信息的。
+它由随机数据初始化。每次发送信息时，都要对 Megolm 密钥进行散列计算，以得出下一条信息的密钥。
 
-### Creating and registering device keys
+因此，可以与用户共享 Megolm 密钥的当前状态，允许他们解密未来的信息，但不能解密过去的信息。
 
-This process only happens once, when a device first starts.
 
-It must create the Ed25519 fingerprint key pair and the Curve25519 identity key
-pair. This is done by calling `olm_create_account` in libolm. The
-(base64-encoded) keys are retrieved by calling `olm_account_identity_keys`. The
-account should be stored for future use.
+#### Ed25519 Megolm 签名密钥对
 
-It should then publish these keys to the homeserver, which is done by using the
-`device_keys` property of the 
+发送方创建 Megolm 会话时，也会创建另一个 Ed25519 签名密钥对。这对密钥用于签署通过 Megolm 会话发送的信息，以验证发件人的身份。
+同样，密钥的私人部分仍保留在设备上。公开部分则与聊天室里的其他设备共享。
+
+### 创建和注册设备密钥
+
+此过程只在设备首次启动时发生一次。
+
+它必须创建 Ed25519 指纹密钥对和 Curve25519 身份密钥对。这需要调用 libolm 中的 `olm_create_account` 来完成。创建的（base64编码）密钥可通过调用`olm_account_identity_keys`来获取。账户应存储起来，以备将来使用。
+
+然后，它应将这些密钥发布到 homeserver，通过使用的 `device_keys` 属性来完成。
+
 [/keys/upload](https://matrix.org/docs/spec/client_server/r0.4.0.html#post-matrix-client-r0-keys-upload)
-endpoint.
 
-In order to sign the `device_keys` payload as described in [Signing JSON
-](https://matrix.org/docs/spec/appendices.html#signing-json), clients should
-call `olm_account_sign`.
+为了按照[签署 JSON](https://matrix.org/docs/spec/appendices.html#signing-json)中所述，客户应调用 `olm_account_sign`。
 
-### Creating and registering one-time keys
+### 创建和注册一次性密钥
 
-The client should keep track of how many one-time keys the homeserver has stored
-for it, and, if necessary, generate and upload some more.
+客户端应跟踪 homeserver 为其存储了多少个一次性密钥，并在必要时对其进行注册。
 
-This can be achieved by inspecting the `device_one_time_keys_count` property of
-a `/sync/` response.
+这可通过检查 `/sync/` 中的 `device_one_time_keys_count` 属性来实现。
 
-The maximum number of active keys supported by libolm is returned by
-`olm_account_max_number_of_one_time_keys`. The client should try to maintain
-about half this number on the homeserver.
+libolm 支持的最大活动密钥数由 `olm_account_max_number_of_one_time_keys` 返回。客户端应尽量保持这个数量的一半左右。
 
-To generate new one-time keys:
+生成新的一次性密钥
 
-- Call `olm_account_generate_one_time_keys` to generate new keys.
-
-- Call `olm_account_one_time_keys` to retrieve the unpublished keys. This
-  returns a JSON-formatted object with the single property `curve25519`, which
-  is itself an object mapping key id to base64-encoded Curve25519 key. For
-  example:
+- 调用 `olm_account_generate_one_time_keys` 生成新密钥。
+- 调用 `olm_account_one_time_keys` 获取未发布的密钥。这返回一个 JSON 格式的对象，其中包含一个属性 `curve25519`，它本身就是键 id 与键值的映射对象。
+    例如
 
     ```json
     {
@@ -151,207 +114,207 @@ To generate new one-time keys:
     }
     ```
 
-- Each key should be signed in the same way as the previous identity keys
-  payload, and uploaded using the `one_time_keys` property of the
-  [/keys/upload](https://matrix.org/docs/spec/client_server/r0.4.0.html#post-matrix-client-r0-keys-upload) endpoint.
+- 每个密钥的签名方式应与之前的身份密钥相同有效负载，并使用/keys/upload中的 "one_time_keys "属性上传。
+  [/keys/upload](https://matrix.org/docs/spec/client_server/r0.4.0.html#post-matrix-client-r0-keys-upload)端点的 `one_time_keys` 属性上传。
 
-- Call `olm_account_mark_keys_as_published` to tell the olm library not to
-  return the same keys from a future call to `olm_account_one_time_keys`.
+- 调用 `olm_account_mark_keys_as_published` 来告诉 olm 库不要在以后的调用中返回相同的密钥。
+  调用 `olm_account_mark_keys_as_published` 来告诉 olm 库不要在以后调用 `olm_account_one_time_keys` 时返回相同的密钥。
 
-### Configuring a room to use encryption
+### 配置使用加密的聊天室
 
-To enable encryption in a room, a client should send a state event of type
-`m.room.encryption`, and content `{ "algorithm": "m.megolm.v1.aes-sha2" }`.
+要在聊天室中启用加密，客户端应发送类型为
+m.room.encryption`，内容为`{ "algorithm"： "m.megolm.v1.aes-sha2" }`。
 
-### Handling an `m.room.encryption` state event
+### 处理 `m.room.encryption` 状态事件
 
-When a client receives an `m.room.encryption` event as above, it should set a
-flag to indicate that messages sent in the room should be encrypted.
+当客户端收到上述 `m.room.encryption` 事件时，应设置一个
+标记，以表明在聊天室中发送的信息应被加密。
 
-This flag should **not** be cleared if a later `m.room.encryption` event changes
-the configuration. This is to avoid a situation where a MITM can simply ask
-participants to disable encryption. In short: once encryption is enabled in a
-room, it can never be disabled.
+如果随后发生的`m.room.encryption`事件改变了配置，该标记不应***被清除。
+配置。这是为了避免 MITM 可以简单地要求参与者禁用加密。
+参与者禁用加密。简而言之：一旦在聊天室中启用加密，就永远无法禁用。
+聊天室中启用加密后，就永远无法禁用。
 
-The event should contain an `algorithm` property which defines which encryption
-algorithm should be used for encryption. Currently only `m.megolm.v1-aes-sha2`
-is permitted here.
+事件应包含一个`算法`属性，用于定义加密时应使用的加密算法。
+算法。目前这里只允许使用 `m.megolm.v1-aes-sha2` 算法。
+允许使用。
 
-The event may also include other settings for how messages sent in the room
-should be encrypted (for example, `rotation_period_ms` to define how often the
-session should be replaced). See the spec for more details.
+该事件还可包含其他设置，用于说明在聊天室内发送的信息
+例如，"rotation_period_ms "用于定义会话更换的频率。
+会话更换频率）。详情请参见规范。
 
-### Handling an `m.room.encrypted` event
+### 处理 `m.room.encrypted` 事件
 
-Encrypted events have a type of `m.room.encrypted`. They have a content property
-`algorithm` which gives the encryption algorithm in use, as well as other
-properties specific to the algorithm[^1].
+加密事件的类型是 `m.room.encrypted`。它们有一个内容属性
+算法"，它给出了正在使用的加密算法，以及与算法[m.room.encrypted]特定的其他
+属性[^1]。
 
-The encrypted payload is a JSON object with the properties `type`(giving the
-decrypted event type), and `content` (giving the decrypted content). Depending
-on the algorithm in use, the payload may contain additional keys.
+加密的有效载荷是一个 JSON 对象，其属性为`type`（给出解密事件类型）、`type`属性、`type`属性和`type`属性。
+解密事件类型）和 `content`（提供解密内容）属性的 JSON 对象。根据
+根据使用的算法，有效载荷可能包含额外的密钥。
 
-There are currently two defined algorithms:
+目前有两种已定义的算法：
 
-### `m.olm.v1.curve25519-aes-sha2`
 
-The spec gives [details on this algorithm
+### `m.olm.v1.curve25519-aes-sha2
+
+规范提供了 [该算法的详细信息
 ](https://matrix.org/docs/spec/client_server/r0.4.0.html#m-olm-v1-curve25519-aes-sha2)
-and an [example payload
+和[有效载荷示例
 ](https://matrix.org/docs/spec/client_server/r0.4.0.html#m-room-encrypted)
 .
 
-The `sender_key` property of the event content gives the Curve25519 identity key
-of the sender. Clients should maintain a list of known Olm sessions for each
-device they speak to; it is recommended to index them by Curve25519 identity
-key.
+事件内容的 `sender_key` 属性给出了发送者的 Curve25519 身份密钥。
+的身份密钥。客户端应为每台与之通话的设备维护一份已知 Olm 会话列表。
+建议按 Curve25519 身份密钥对其进行索引。
+密钥编制索引。
 
-Olm messages are encrypted separately for each recipient device. `ciphertext` is
-an object mapping from the Curve25519 identity key for the recipient device.
-The receiving client should, of course, look for its own identity key in this
-object. (If it isn't listed, the message wasn't sent for it, and the client
-can't decrypt it; it should show an error instead, or similar).
+每个收件人设备的 Olm 信息都是单独加密的。密码文本
+是接收设备的 Curve25519 身份密钥的对象映射。
+当然，接收客户端应在此对象中查找自己的身份密钥。
+对象。(如果没有列出，说明信息不是为其发送的，客户端
+就无法解密；客户端应显示错误或类似信息）。
 
-This should result in an object with the properties `type` and `body`. Messages
-of type '0' are 'prekey' messages which are used to establish a new Olm session
-between two devices; type '1' are normal messages which are used once a message
-has been received on the session.
+这将产生一个具有 `type` 和 `body` 属性的对象。信息
+类型为 "0 "的信息是 "预钥 "信息，用于在两个设备之间建立新的 Olm 会话
+类型'1'是普通报文，一旦会话收到报文就会使用。
+在会话中接收到信息后就会使用。
 
-When a message (of either type) is received, a client should first attempt to
-decrypt it with each of the known sessions for that sender. There are two steps
-to this:
+当收到信息（无论哪种类型）时，客户端应首先尝试
+解密。这有两个步骤
+步骤：
 
-- If (and only if) `type==0`, the client should call
-  `olm_matches_inbound_session` with the session and `body`. This returns a
-  flag indicating whether the message was encrypted using that session.
-- The client calls `olm_decrypt`, with the session, `type`, and `body`. If this
-  is successful, it returns the plaintext of the event.
+- 如果（且仅当）`type==0`，客户端应调用
+  olm_matched_inbound_session"。这将返回一个
+  标志，表明信息是否使用该会话加密。
+- 客户端会调用包含会话、`type`和`body`的`olm_decrypt`。如果调用
+  成功，它将返回事件的明文。
 
-If the client was unable to decrypt the message using any known sessions(or if
-there are no known sessions yet), **and** the message had type 0,
-**and** `olm_matches_inbound_session` wasn't true for any existing sessions,
-  then the client can try establishing a new session. This is done as follows:
+如果客户端无法使用任何已知会话解密消息（或还没有已知的会话
+且***报文类型为 0、
+**并且***`olm_matches_inbound_session`在任何现有会话中都不为真、
+  那么客户端就可以尝试建立一个新会话。具体方法如下：
 
-- Call `olm_create_inbound_session_from` using the olm account, and the
-  `sender_key` and `body` of the message.
-- If the session was established successfully:
-    - Call `olm_remove_one_time_keys` to ensure that the same one-time-key
-      cannot be reused.
-    - Call `olm_decrypt` with the new session.
-    - Store the session for future use.
+- 调用 `olm_create_inbound_session_from` 使用 olm 帐户和
+  消息的 `sender_key` 和 `body`。
+- 如果会话已成功建立：
+    - 调用 `olm_remove_one_time_keys` 以确保相同的一次性密钥
+      不能被重复使用。
+    - 使用新会话调用 `olm_decrypt`。
+    - 存储会话以备将来使用。
 
-At the end of this, the client will hopefully have successfully decrypted the
-payload.
+在此过程结束时，客户端将有望成功解密
+有效负载。
 
-As well as the `type` and `content` properties, the plaintext payload should
-contain a number of other properties. Each of these should be checked as
-follows[^2].
+除了 `type` 和 `content` 属性外，明文有效载荷还应包含许多其他属性。
+还包含许多其他属性。每个属性的检查方法如下
+如下[^2]。
 
-- `sender`: The user ID of the sender. The client should check that this matches
-  the `sender` in the event.
+- 发件人 发件人的用户 ID。客户端应检查是否与事件中的
+  发件人"。
 
-- `recipient`: The user ID of the recipient. The client should check that this
-  matches the local user ID.
+- 收件人"： 收件人的用户 ID。客户端应检查
+  与本地用户 ID 一致。
 
-- `keys`: an object with a property `ed25519`. The client should check that the
-  value of this property matches the sender's fingerprint key when [marking the
-  event as verified](#marking-events-as-verified).
+- keys"：属性为 "ed25519 "的对象。客户端应检查
+  值与发件人的指纹密钥相匹配。
+  将事件标记为已验证 时，客户端应检查该属性的值是否与发件人的指纹密钥一致。
 
-- `recipient_keys`: an object with a property `ed25519`. The client should check
-  that the value of this property matches its own fingerprint key.
+- recipient_keys"：属性为 "ed25519 "的对象。客户端应检查
+  该属性的值是否与自己的指纹密钥一致。
 
-### `m.megolm.v1.aes-sha2`
+### `m.megolm.v1.aes-sha2
 
-The spec gives [details on this algorithm
+规范提供了[该算法的详细信息
 ](https://matrix.org/docs/spec/client_server/r0.4.0.html#m-megolm-v1-aes-sha2)
-and an [example payload
+和[有效载荷示例
 ](https://matrix.org/docs/spec/client_server/r0.4.0.html#m-room-encrypted)
 .
 
-Encrypted events using this algorithm should have `sender_key`, `session_id` and
-`ciphertext` content properties. If the `room_id`, `sender_key` and
-`session_id` correspond to a known Megolm session (see below), the ciphertext
-can be decrypted by passing the ciphertext into `olm_group_decrypt`.
+使用此算法加密的事件应具有 `sender_key`、`session_id` 和 `ciphertext` 内容属性。
+内容属性。如果 `room_id`、`sender_key` 和
+会话_id "对应于已知的 Megolm 会话（见下文），则密文
+可以通过将密文传入 `olm_group_decrypt` 来解密。
 
-In order to avoid replay attacks a client should remember the megolm
-`message_index` returned by `olm_group_decrypt` of each event they decrypt for
-each session. If the client decrypts an event with the same `message_index` as
-one that it has already received using that session then it should treat the
-message as invalid. However, care must be taken when an event is decrypted
-multiple times that it is not flagged as a replay attack. For example, this may
-happen when the client decrypts an event, the event gets purged from the
-client's cache, and then the client backfills and re-decrypts the event. One
-way to handle this case is to ensure that the record of `message_index`es is
-appropriately purged when the client's cache of events is purged. Another way
-is to remember the event's `event_id` and `origin_server_ts` along with its
-`message_index`. When the client decrypts an event with a `message_index`
-matching that of a previously-decrypted event, it can then compare the
-`event_id` and `origin_server_ts` that it remembered for that `message_index`,
-and if those fields match, then the message should be decrypted as normal.
+为避免重放攻击，客户端应牢记 Megolm
+事件的 `message_index` 返回值。
+会话中解密的每个事件的 megolm `message_index` 返回值。如果客户端解密的事件的 `message_index` 与它已用该事件解密的事件的 `message_index` 相同，则该事件将被解密。
+相同的事件，则客户端应将该消息视为无效。
+消息视为无效。不过，当一个事件被解密
+时，必须注意不要将其标记为重放攻击。例如
+例如，当客户端对事件进行解密后，事件从客户端的缓存中清除，然后
+事件从客户端缓存中清除，然后客户端回填并重新解密事件时，就可能发生这种情况。处理这种情况的一种
+处理这种情况的一种方法是，确保在客户端缓存被清除时适当地清除 `message_index`es 记录。
+事件记录。另一种方法是
+是记住事件的 `event_id` 和 `origin_server_ts` 以及它的
+消息索引"。当客户端解密的事件的 `message_index
+相匹配的事件时，客户端就可以比较
+事件_id "和 "源服务器ts"、
+如果这些字段相匹配，则应按正常方式解密信息。
 
-The client should check that the sender's fingerprint key matches the
-`keys.ed25519` property of the event which established the Megolm session when
-[marking the event as verified](#marking-events-as-verified).
+客户端应检查发件人的指纹密钥是否与
+keys.ed25519 "属性。
+将事件标记为已验证。
 
-### Handling an `m.room_key` event
+### 处理 `m.room_key` 事件
 
-These events contain key data to allow decryption of other messages. They are
-sent to specific devices, so they appear in the `to_device` section of the
-response to `GET /_matrix/client/r0/sync`. They will also be encrypted, so will
-need decrypting as above before they can be seen.(These events are generated by
-other clients - see [starting a megolm session](#starting-a-megolm-session)).
+这些事件包含用于解密其他信息的密钥数据。它们
+发送到特定设备，因此它们会出现在对 `GET /_matrix/client/r0/sync'的
+响应的 "to_device "部分。它们也将被加密，因此
+这些事件是由其他客户端生成的。
+其他客户端生成--请参阅启动 megolm 会话)。
 
-The `room_id`, together with the `sender_key` of the `m.room_key` event before
-it was decrypted, and the `session_id`, uniquely identify a Megolm session. If
-they do not represent a known session, the client should start a new inbound
-Megolm session by calling `olm_init_inbound_group_session` with the
-`session_key`.
+聊天室_id "和 "m.room_key "事件的 "发送者密钥
+和 `session_id` 能唯一标识一个 Megolm 会话。如果
+它们不代表一个已知会话，则客户端应通过调用 `session_id` 启动一个新的入站
+会话。
+会话密钥
 
-The client should remember the value of the keys property of the payload of the
-encrypted `m.room_key` event and store it with the inbound session. This is
-used as above when marking the event as verified.
+客户机应记住
+加密的 `m.room_key` 事件有效载荷的 keys 属性的值，并将其与入站会话一起存储。在将事件标记为
+在将事件标记为已验证时使用。
 
-### Downloading the device list for users in the room
+### 下载聊天室内用户的设备列表
 
-Before an encrypted message can be sent, it is necessary to retrieve the list of
-devices for each user in the room. This can be done proactively, or deferred
-until the first message is sent. The information is also required to allow
-users to verify or block devices.
+在发送加密信息之前，有必要检索聊天室内每个用户的设备列表。
+设备列表。这项工作可以主动进行，也可以推迟到
+直到发送第一条信息。用户还需要这些信息来验证或阻止设备。
+用户验证或阻止设备。
 
-The client should use the [/keys/query
+客户端应使用 [/keys/query
 ](https://matrix.org/docs/spec/client_server/r0.4.0.html#post-matrix-client-r0-keys-query)
-endpoint, passing the IDs of the members of the room in the `device_keys`
-property of the request.
+端点，在请求的 `device_keys` 属性中传递聊天室成员的 ID。
+属性中传递聊天室成员的 ID。
 
-The client must first check the signatures on the `DeviceKeys` objects returned
-by [/keys/query
-](https://matrix.org/docs/spec/client_server/r0.4.0.html#post-matrix-client-r0-keys-query).
-To do this, it should remove the `signatures` and `unsigned` properties, format
-the remainder as Canonical JSON, and pass the result into `olm_ed25519_verify`,
-using the Ed25519 key for the `key` parameter, and the corresponding signature
-for the `signature` parameter. If the signature check fails, no further
-processing should be done on the device.
+客户机必须首先检查由/keys/query返回的 "设备键 "对象上的签名。
+对象上的签名。
+[](https://matrix.org/docs/spec/client_server/r0.4.0.html#post-matrix-client-r0-keys-query)返回的 `DeviceKeys` 对象的签名。
+为此，客户端应删除 `signatures` 和 `unsigned` 属性，将剩余部分格式化为 Canonical JSON。
+并将结果传入 `olm_ed25519_verify`、
+参数使用 Ed25519 密钥，`signature`参数使用相应的签名。
+参数的相应签名。如果签名检查失败
+处理。
 
-The client must also check that the `user_id` and `device_id` fields in the
-object match those in the top-level map[^3].
+客户端还必须检查对象中的 `user_id` 和 `device_id` 字段是否与顶层映射中的
+对象中的`user_id`和`device_id`字段与顶层 map[^3] 中的字段相匹配。
 
-The client should check if the `user_id`/`device_id` correspond to a device it
-had seen previously. If it did, the client **must** check that the Ed25519 key
-hasn't changed. Again, if it has changed, no further processing should be done
-on the device.
+客户机应检查`user_id`/`device_id`是否与它以前看到过的设备相对应。
+之前看到过的设备。如果是，客户端**必须**检查 Ed25519 密钥
+没有更改。同样，如果已更改，则不应在设备上执行进一步处理。
+处理。
 
-Otherwise the client stores the information about this device.
+否则，客户机将存储有关该设备的信息。
 
-### Sending an encrypted message event
+### 发送加密信息事件
 
-When sending a message in a room 
-[configured to use encryption](#configuring-a-room-to-use-encryption), a client
-first checks to see if it has an active outbound Megolm session. If not, it first 
-[creates one as per below](#starting-a-megolm-session). If an outbound session
-exists, it should check if it is time to [rotate](#rotating-megolm-sessions) it,
-and create a new one if so.
+在聊天室内发送信息时 
+配置为使用加密 时，客户端
+首先检查它是否有一个活动的向外 Megolm 会话。如果没有，则首先 
+创建一个会话 starting-a-megolm-session。如果对外会话
+则应检查是否到了[轮转]（#rotating-megolm-sessions）的时候、
+并创建一个新会话。
 
-The client then builds an encryption payload as follows:
+然后，客户端会按如下方式创建加密有效载荷：
 
 ```json
 {
@@ -361,8 +324,8 @@ The client then builds an encryption payload as follows:
 }
 ```
 
-and calls `olm_group_encrypt` to encrypt the payload. This is then packaged into
-event content as follows:
+并调用 `olm_group_encrypt` 加密有效载荷。然后将其打包到
+事件内容：
 
 ```json
 {
@@ -374,193 +337,192 @@ event content as follows:
 }
 ```
 
-Finally, the encrypted event is sent to the room with
+最后，通过以下方式将加密事件发送到聊天室
 `PUT /_matrix/client/r0/rooms/<room_id>/send/m.room.encrypted/<txn_id>`.
 
-### Starting a Megolm session
+### 开始 Megolm 会话
 
-When a message is first sent in an encrypted room, the client should start a new
-outbound Megolm session. This should **not** be done proactively, to avoid
-proliferation of unnecessary Megolm sessions.
+首次在加密聊天室发送信息时，客户端应启动一个新的
+出站 Megolm 会话。为避免不必要的 Megolm 会话激增，不应主动****。
+不必要的 Megolm 会话。
 
-To create the session, the client should call `olm_init_outbound_group_session`,
-and store the details of the outbound session for future use.
+要创建会话，客户端应调用 `olm_init_outbound_group_session`、
+并存储出站会话的详细信息，以备将来使用。
 
-The client should then call `olm_outbound_group_session_id` to get the unique ID
-of the new session, and `olm_outbound_group_session_key` to retrieve the
-current ratchet key and index. It should store these details as an inbound
-session, just as it would when 
-[receiving them via an m.room_key event](#handling-an-m-room-key-event).
+然后，客户端应调用 `olm_outbound_group_session_id` 获取新会话的唯一 ID，并调用 `olm_outbound_group_session_id` 获取新会话的唯一 ID。
+和 `olm_outbound_group_session_key` 获取当前棘轮键和索引。
+当前棘轮键和索引。它应将这些详细信息存储为入站（inbound
+会话，就像 
+通过 m.room_key 事件接收这些信息。
 
-The client must then share the keys for this session with each device in the
-room. It must therefore [download the device list](#downloading-the-device-list-for-users-in-the-room) if it hasn't already done
-so. Then it should build a unique `m.room_key` event, and send it encrypted
-[using Olm](#encrypting-an-event-with-olm) to each device in the room which has
-not been blocked.
+然后，客户端必须与聊天室内的每个设备共享该会话的密钥。
+聊天室。因此，如果尚未下载设备列表，则必须 下载。
+这样做。然后，它应该创建一个唯一的 `m.room_key` 事件，并将其加密发送
+使用 Olm加密后发送给聊天室里每个未被阻止的设备。
+未被阻止的设备。
 
-Once all of the key-sharing event contents have been assembled, the events
-should be sent to the corresponding devices via
+一旦所有密钥共享事件的内容都汇集在一起，事件
+应通过
 `PUT /_matrix/client/r0/sendToDevice/m.room.encrypted/<txnId>`.
 
-### Rotating Megolm sessions
+### 轮流使用 Megolm 会话
 
-Megolm sessions may not be reused indefinitely. The parameters which define how
-often a session should be rotated are defined in the `m.room.encryption` state
-event of a room.
+Megolm 会话不能无限期重复使用。定义会话轮换频率的参数是
+参数在聊天室的 `m.room.encryption` 状态事件中定义。
+事件中定义。
 
-Once either the message limit or time limit have been reached, the client should
-start a new session before sending any more messages.
+一旦达到信息限制或时间限制，客户端应
+开始新的会话，然后再发送信息。
 
-### Encrypting an event with Olm
+### 使用 Olm 加密事件
 
-Olm is not used for encrypting room events, as it requires a separate copy of
-the ciphertext for each device, and because the receiving device can only
-decrypt received messages once. However, it is used for encrypting key-sharing
-events for Megolm.
+Olm 不适用于加密聊天室事件，因为它需要为每个设备单独拷贝一份
+而且接收设备只能对收到的信息解密一次。
+解密一次。不过，它可用于为 Megolm 的密钥共享事件加密。
+事件进行加密。
 
-When encrypting an event using Olm, the client should:
+使用 Olm 加密事件时，客户端应
 
-- Build an encryption payload as illustrated in the [spec
-  ](https://matrix.org/docs/spec/client_server/r0.4.0.html#m-olm-v1-curve25519-aes-sha2).
-- Check if it has an existing Olm session; if it does not, [start a new one
-  ](#starting-a-megolm-session). If it has several (as may happen due to races
-  when establishing sessions), it should use the session from which it last
-  received a message.
+- 按照 [spec
+  ](https://matrix.org/docs/spec/client_server/r0.4.0.html#m-olm-v1-curve25519-aes-sha2)中的说明构建加密有效载荷。
+- 检查是否有现有的 Olm 会话；如果没有，则 启动一个新会话
+。如果它有多个会话（由于在建立会话时可能会发生竞赛
+  会话），则应使用最后收到信息的会话。
+  收到信息的会话。
 
-[Starting an Olm session](#starting-an-olm-session)
+启动一个 Olm 会话
 
-- Encrypt the payload by calling `olm_encrypt`.
-- Package the payload into an Olm `m.room.encrypted` event.
+- 调用 `olm_encrypt` 加密有效载荷。
+- 将有效载荷打包成一个 Olm `m.room.encrypted` 事件。
 
-### Starting an Olm session
+### 启动 Olm 会话
 
-To start a new Olm session with another device, a client must first claim one of
-the other device's one-time keys. To do this, it should initiate a request to
-[/keys/claim
-](https://matrix.org/docs/spec/client_server/r0.4.0.html#post-matrix-client-r0-keys-claim).
+要与另一台设备启动新的 Olm 会话，客户端必须首先申请另一台设备的
+一次性密钥。为此，客户端应请求
+[请求。
+](https://matrix.org/docs/spec/client_server/r0.4.0.html#post-matrix-client-r0-keys-claim)。
 
-The client should check the signatures on the signed key objects in the
-response. As with checking the signatures on the device keys, it should remove
-the `signatures` and (if present) `unsigned` properties, format the remainder
-as Canonical JSON, and pass the result into `olm_ed25519_verify`, using the
-Ed25519 device key for the `key` parameter.
+客户端应检查响应中已签名密钥对象上的签名。
+响应。与检查设备密钥上的签名一样，客户端应删除
+签名 "和（如果存在）"未签名 "属性，将剩余部分格式化为
+格式化为 Canonical JSON，并将结果传入 `olm_ed25519_verify`，使用
+Ed25519设备密钥作为`key`参数。
 
-Provided the key object passes verification, the client should then pass the
-key, along with the Curve25519 Identity key for the remote device, into
-`olm_create_outbound_session`.
+如果密钥对象通过验证，客户端应将
+密钥和远程设备的 Curve25519 身份密钥一起传入
+olm_create_outbound_session`。
 
-### Handling membership changes
+### 处理成员变更
 
-The client should monitor rooms which are configured to use encryption for
-membership changes.
+客户端应监控配置为使用加密来处理成员变更的聊天室。
+成员变更。
 
-When a member leaves a room, the client should invalidate any active outbound
-Megolm session, to ensure that a new session is used next time the user sends a
-message.
+当成员离开聊天室时，客户端应使任何活动的出站
+Megolm 会话，以确保用户下次发送信息时使用新会话。
+信息。
 
-When a new member joins a room, the client should first [download the device
-list](#downloading-the-device-list-for-users-in-the-room) for the new member,
-if it doesn't already have it.
+当有新成员加入聊天室时，客户端应首先 下载设备列表、
+如果还没有的话。
 
-After giving the user an opportunity to [block
-](https://matrix.org/docs/spec/client_server/r0.4.0.html#device-verification)
-any suspicious devices, the client should share the keys for the outbound
-Megolm session with all the new member's devices. This is done in the same way
-as [creating a new session](#starting-a-megolm-session), except that there is
-no need to start a new Megolm session: due to the design of the Megolm ratchet,
-the new user will only be able to decrypt messages starting from the current
-state. The recommended method is to maintain a list of members who are waiting
-for the session keys, and share them when the user next sends a message.
+让用户有机会阻止
+[](https://matrix.org/docs/spec/client_server/r0.4.0.html#device-verification)
+任何可疑设备后，客户端应与所有新成员共享出站
+Megolm 会话的密钥。共享方式与
+与 创建新会话 的方法相同，只是不需要启动新的 Megolm 会话。
+不需要启动新的 Megolm 会话：由于 Megolm 棘轮装置的设计，新用户只能访问所有设备、
+新用户只能从当前状态开始解密信息。
+状态开始解密。建议的方法是维护一份等待会话密钥的成员名单，并共享这些成员的会话密钥。
+会话密钥的成员名单，并在用户下一次发送信息时共享这些密钥。
 
-### Handling new devices
+### 处理新设备
 
-When a user logs in on a new device, it is necessary to make sure that other
-devices in any rooms with encryption enabled are aware of the new device, so
-that they can share their outbound sessions with it as they would with a new
-member.
+当用户在新设备上登录时，有必要确保任何聊天室内的其他
+聊天室中启用了加密功能的其他设备都知道新设备，这样它们就可以共享它们的对外会话。
+这样它们就可以像与新成员一样共享它们的出站会话。
+成员。
 
-The device tracking process which should be implemented is documented [in the
-spec](https://matrix.org/docs/spec/client_server/r0.4.0.html#tracking-the-device-list-for-a-user).
+应实施的设备跟踪过程已记录在案规范。
+[规范](https://matrix.org/docs/spec/client_server/r0.4.0.html#tracking-the-device-list-for-a-user)。
 
-### Blocking / Verifying devices
+###阻止/验证设备
 
-It should be possible for a user to mark each device belonging to another user
-as 'Blocked' or 'Verified', through a process detailed [in the spec
-](https://matrix.org/docs/spec/client_server/r0.4.0.html#sending-encrypted-attachments).
+用户应能将属于其他用户的每个设备标记为
+用户应可通过 中详细说明的程序，将属于另一用户的每台设备标记为 "已阻止 "或 "已验证"。
+[规范](https://matrix.org/docs/spec/client_server/r0.4.0.html#sending-encrypted-attachments)。
 
-When a user chooses to block a device, this means that no further encrypted
-messages should be shared with that device. In short, it should be excluded
-when sharing room keys when starting a new Megolm session. Any active outbound
-Megolm sessions whose keys have been shared with the device should also be
-invalidated so that no further messages are sent over them.
+当用户选择阻止一个设备时，这意味着不再与该设备共享加密信息。
+信息。简而言之，应排除
+在开始新的 Megolm 会话时共享聊天室密钥。任何活动的出站
+设备共享密钥的活动外向 Megolm 会话也应
+失效，以便不再通过它们发送信息。
 
-### Marking events as 'verified'
+### 将事件标记为 "已验证
 
-Once a device has been verified, it is possible to verify that events have been
-sent from a particular device. See the section on Handling an m.room.encrypted
-event for notes on how to do this for each algorithm. Events sent from a
-verified device can be decorated in the UI to show that they have been sent
-from a verified device.
+一旦设备通过验证，就可以确认事件是否从特定设备发送。
+从特定设备发送的事件。请参阅处理 m.room.encrypted
+事件部分，了解如何针对每种算法进行验证。从
+可以在用户界面中进行装饰，以显示这些事件是从经过验证的设备发送的。
+从已验证设备发送的事件。
 
-## Encrypted attachments
+## 加密附件
 
-Homeservers must not be able to read files shared in encrypted rooms. Clients
-should implement a strategy described [in the spec
-](https://matrix.org/docs/spec/client_server/r0.4.0#sending-encrypted-attachments).
+homeserver不能读取加密聊天室中共享的文件。客户端
+应执行[规范
+](https://matrix.org/docs/spec/client_server/r0.4.0#sending-encrypted-attachments)。
 
-Currently, the files are encrypted using AES-CTR, which is not included in
-libolm. Clients have to rely on a third party library.
+目前，文件是使用 AES-CTR 加密的，而 AES-CTR 并不包含在
+libolm。客户端必须依赖第三方库。
 
-## Key sharing
+##密钥共享
 
-When an event cannot be decrypted due to missing keys, a client may want to
-request them from other clients which may have them. Similarly, a client may
-want to reply to a key request with the associated key if it can assert that
-the requesting device is allowed to see the messages encrypted with this key.
+当一个事件因缺少密钥而无法解密时，客户端可能想
+向其他可能拥有密钥的客户端申请密钥。同样，客户端可能
+如果能确认请求设备被允许查看密钥，则客户端可能希望用相关密钥回复密钥请求。
+请求设备允许查看用该密钥加密的信息。
 
-Those capabilities are achieved using `m.room_key_request` and
-`m.forwarded_room_key` events.
+这些功能可通过 `m.room_key_request` 和 `m.forwarded_room_request` 来实现。
+事件来实现。
 
-The `session_key` property of a `m.forwarded_room_key` event differs from the
-one of a `m.room_key` event, as it does not include the Ed25519 signature of
-the original sender. It should be obtained from
-`olm_export_inbound_group_session` at the desired `message index`, and the
-session can be restored with `olm_import_inbound_group_session`.
+m.forwarded_room_key`事件的`session_key`属性不同于`m.room_key`事件的`session_key`属性。
+事件不同，因为它不包括原始发送者的 Ed25519 签名。
+签名。应从
+olm_export_inbound_group_session "中的 "信息索引 "中获取，并可使用`m.room_key`恢复会话。
+可以使用 `olm_import_inbound_group_session` 恢复会话。
 
-The `forwarded_room_key` property starts out empty, but each time a key is
-forwarded to another device, the previous sender in the chain is added to the
-end of the list. Consider the following example:
+`forwarded_room_key`属性一开始是空的，但每次密钥被转发到其他设备时，之前的密钥就会被删除。
+转发到另一个设备时，链中的前一个发送方就会被添加到列表末尾。
+列表的末尾。请看下面的例子：
 
 > -   A -\> B : m.room\_key
 > -   B -\> C : m.forwarded\_room\_key
 > -   C -\> D : m.forwarded\_room\_key
 
-In the message B -\> C `forwarded_room_key` is empty, but in the message C -\> D
-it contains B's Curve25519 key. In order for D to believe that the session came
-from A, D must trust the direct sender C and every entry in this chain.
+在信息 B -\> C 中，"forwarded_room_key "是空的，但是在信息 C -\> D 中
+中却包含了 B 的 Curve25519 密钥。为了让 D 相信会话来自 A
+D 就必须信任直接发送者 C 和这个链中的每一个条目。
 
-In order to securely implement key sharing, clients must not reply to every key
-request they receive. The recommended strategy is to share the keys
-automatically only to **verified** devices of the **same user**. Requests
-coming from unverified devices should prompt a dialog, allowing the user to
-verify the device, share the keys without verifying, or not to share them
-(and ignore future requests). A client should also check whether requests
-coming from devices of other users are legitimate. This can be done by keeping
-track of the users a session was shared with, and at which `message index`.
+为了安全地实现密钥共享，客户端必须不回复它们收到的每一个密钥请求。
+请求。建议的策略是
+自动共享密钥。请求
+来自未经验证设备的请求应提示对话框，允许用户
+验证设备、不经验证共享密钥或不共享密钥（并忽略以后的请求）。
+（并忽略以后的请求）。客户端还应检查
+来自其他用户设备的请求是否合法。这可以通过
+跟踪与哪些用户共享了会话，以及在哪个 "信息索引 "上共享了会话。[^3]
 
-Key requests can be sent to all of the current user's devices, as well as the
-original sender of the session, and other devices present in the room. When the
-client receives the requested key, it should send a `m.room_key_request` event
-to all the devices it requested the key from, setting the `action` property to
-`"cancel_request"` and `request_id` to the ID of the initial request.
+密钥请求可以发送到当前用户的所有设备、会话的原始发送者以及聊天室里的其他设备。[^1]
+会话的原始发送者和聊天室里的其他设备。当
+客户端收到请求的密钥后，应向所有向其请求密钥的设备发送 `m.room_key_request` 事件，并设置`action_key_request`事件。
+事件，并将 `action` 属性设置为
+action "属性设置为`"cancel_request"，`request_id "属性设置为初始请求的 ID。
 
-[^1]: Note that a redacted event will have an empty content, and hence the
-content will have no `algorithm` property. Thus a client should check whether
-an event is redacted before checking for the `algorithm` property.
+[^1]: 请注意，编辑后的事件内容为空，因此其
+内容将没有`算法`属性。因此，客户端在检查
+算法 "属性。
 
-[^2]: These tests prevent an attacker publishing someone else's curve25519 keys
-as their own and subsequently claiming to have sent messages which they
-didn't.
+[^2]: 这些测试可防止攻击者将他人的 curve25519 密钥
+作为自己的密钥，并随后声称发送了信息，但其实并没有。
+的信息。
 
-[^3]: This prevents a malicious or compromised homeserver replacing the keys for
-the device with those of another.
+[^3]: 这可防止恶意或被入侵的homeserver将设备的密钥替换为他人的密钥。
+设备的密钥。 

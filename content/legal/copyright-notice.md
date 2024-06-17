@@ -1,74 +1,73 @@
 +++
-title = "Matrix.org Copyright Notice"
+title = "Matrix.org 版权声明"
 version = "2.0.0"
 +++
 
-When you read 'the Matrix.org homeserver' or 'the Service' below, it refers to the services made available at **Matrix.org** which store your account and personal conversation history, provide services such as bots and bridges, and communicate via the open Matrix decentralised communication protocol with the public Matrix Network.
+当你在下面读到 "Matrix.org homeerver "或 "服务 "时，它指的是**Matrix.org**上提供的服务，这些服务存储你的账户和个人对话历史，提供机器人和桥接器等服务，并通过开放的 Matrix 分散通信协议与公共 Matrix 网络进行通信。
 
-If the terms of this copyright notice are not acceptable, please use a Matrix server provided by someone else!
+如果不接受本版权声明的条款，请使用他人提供的 Matrix 服务器！
 
-## Reporting Claims of Copyright Infringement
+## 报告版权侵权索赔
 
-We take claims of copyright infringement seriously. This policy deals with what to do if you believe that any user contributions violate your copyright. It is our policy to terminate the user accounts of repeat infringers.
+我们认真对待版权侵权索赔。本政策规定了如果你认为任何用户提供的内容侵犯了你的版权，该如何处理。我们的政策是终止重复侵权者的用户账户。
 
-We will respond to notices of alleged copyright infringement that comply with applicable law. If you believe any materials accessible via the Service infringe your copyright, you may request removal of those materials (or access to them) from the Service by submitting written notification to our Copyright Agent (designated below). In accordance with the Online Copyright Infringement Liability Limitation Act of the Digital Millennium Copyright Act (17 U.S.C. § 512) ("DMCA"), the written notice (the "DMCA Notice") must include substantially the following:
+我们将根据适用法律对涉嫌侵犯版权的通知做出回应。如果你认为通过本服务可访问的任何资料侵犯了你的版权，你可以向我们的版权代理（如下文指定）提交书面通知，要求从本服务中删除这些资料（或访问这些资料）。根据《数字千年版权法》的《在线版权侵权责任限制法》（17 U.S.C. § 512）（以下简称 "DMCA"），书面通知（以下简称 "DMCA 通知"）必须包括以下实质内容：
 
-* Your physical or electronic signature.
+* 你的亲笔签名或电子签名。
 
-* Identification of the copyrighted work you believe to have been infringed or, if the claim involves multiple works on the Website or in connection with the Services, a representative list of such works.
+* 你认为被侵权的版权作品的标识，如果索赔涉及网站上的多个作品或与服务有关的多个作品，则应提供这些作品的代表清单。
 
-* Identification of the material you believe to be infringing in a sufficiently precise manner to allow us to locate that material.
+* 以足够精确的方式指明你认为侵权的材料，以便我们找到该材料。
 
-* Adequate information by which we can contact you (including your name, postal address, telephone number and, if available, email address).
+* 我们能与你联系的充分信息（包括你的姓名、邮政地址、电话号码以及电子邮件地址（如有））。
 
-* A statement that you have a good faith belief that use of the copyrighted material is not authorized by the copyright owner, its agent or the law.
+* 你有充分理由相信版权材料的使用未经版权所有者、其代理人或法律授权的声明。
 
-* A statement that the information in the written notice is accurate.
+* 书面通知中的信息准确无误的声明。
 
-* A statement, under penalty of perjury, that you are authorized to act on behalf of the copyright owner.
+* 在作伪证受罚的情况下，声明你已被授权代表版权所有者行事。
 
-Our designated Copyright Agent to receive DMCA Notices is:
+我们指定接收 DMCA 通知的版权代理是
 
-Matthew Hodgson
-c/o Element
+马修-霍奇森
+转 Element
 10 Queen Street Place
-London
-United Kingdom
+英国
+英国
 EC4R 1AG
 
-By email: dmca@matrix.org
+电子邮件：dmca@matrix.org
 
-If you fail to comply with all of the requirements of Section 512(c)(3) of the DMCA, your DMCA Notice may not be effective.
+如果你未遵守《数字千年版权法》第 512(c)(3)条的所有要求，你的《数字千年版权法通知》可能无效。
 
-Please be aware that if you knowingly materially misrepresent that material or activity on the Website or in connection with the Services is infringing your copyright, you may be held liable for damages (including costs and attorneys' fees) under Section 512(f) of the DMCA.
+请注意，如果你明知网站上或与服务相关的材料或活动侵犯了你的版权，却故意进行实质性的虚假陈述，根据《数字千年版权法》第 512(f)条的规定，你可能要承担损害赔偿责任（包括成本和律师费）。
 
-### Counter-notification procedures
+### 反通知程序
 
-If you believe that material you posted on the Website or using the Services was removed or access to it was disabled by mistake or misidentification, you may file a counter-notification with us (a "Counter-Notice") by submitting written notification to our Copyright Agent. Pursuant to the DMCA, the Counter-Notice must include substantially the following:
+如果你认为你在本网站或使用服务时发布的材料因错误或识别错误而被删除或禁止访问，你可以向我们的版权代理提交书面通知，向我们提出反通知（以下简称 "反通知"）。根据《数字千年版权法》，反通知必须包括以下实质内容：
 
-* Your physical or electronic signature.
+* 你的亲笔签名或电子签名。
 
-* An identification of the material that has been removed or to which access has been disabled and the location at which the material appeared before it was removed or access disabled.
+* 被删除或禁止访问的材料的标识，以及材料被删除或禁止访问前的位置。
 
-* Adequate information by which we can contact you (including your name, postal address, telephone number and, if available, email address).
+* 我们能与你取得联系的充分信息（包括你的姓名、邮寄地址、电话号码以及电子邮件地址（如有））。
 
-* A statement under penalty of perjury by you that you have a good faith belief that the material identified above was removed or disabled as a result of a mistake or misidentification of the material to be removed or disabled.
+* 在作伪证的处罚下，你声明你有充分的理由相信，上述材料被删除或禁用是由于错误或误认了要删除或禁用的材料。
 
-* A statement that you will consent to the jurisdiction of the Federal District Court for the judicial district in which your address is located (or if you reside outside the United States for any judicial district in which the Website or Services may be found) and that you will accept service from the person (or an agent of that person) who provided the Website or Services with the complaint at issue.
+* 你同意接受你地址所在司法管辖区的联邦地区法院管辖的声明（如果你居住在美国境外，则你同意接受网站或服务所在司法管辖区的联邦地区法院管辖的声明），以及你接受向网站或服务提供相关投诉的个人（或其代理人）送达的声明。
 
-The DMCA allows us to restore the removed content if the party filing the original DMCA Notice does not file a court action against you within ten business days of receiving the copy of your Counter-Notice.
+如果提交原始 DMCA 通知的一方在收到你的反通知副本后十个工作日内未对你提起诉讼，DMCA 允许我们恢复被删除的内容。
 
-Please be aware that if you knowingly materially misrepresent that material or activity on the Website or provided in connection with the Services was removed or disabled by mistake or misidentification, you may be held liable for damages (including costs and attorneys' fees) under Section 512(f) of the DMCA.
+请注意，如果你故意在实质上歪曲网站上的材料或活动或提供的服务因错误或误认而被删除或禁用，根据《数字千年版权法》第 512(f) 条，你可能要承担损害赔偿责任（包括成本和律师费）。
 
-### Repeat infringers
+### 重复侵权者
 
-It is our policy in appropriate circumstances to disable and/or terminate the accounts of users who are repeat infringers.
+我们的政策是在适当情况下禁用和/或终止重复侵权用户的账户。
 
-### Version history
+### 版本历史
 
-- 1.0.0 - first version of document - August 2018
-- 1.1.0 - adding metadata and removing slugs - September 2019
-- 1.2.0 - rebrand changes - July 2020
-- 1.2.1 - legal entity details fix - August 2022
-- 2.0.0 - add Element German legal entity - June 2023
-
+- 1.0.0 - 文档第一版 - 2018 年 8 月
+- 1.1.0 - 添加元数据并删除标点 - 2019 年 9 月
+- 1.2.0 - 品牌重塑 - 2020 年 7 月
+- 1.2.1 - 法律实体细节修复 - 2022 年 8 月
+- 2.0.0 - 添加德国法律实体Element - 2023 年 6 月

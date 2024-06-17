@@ -2,12 +2,11 @@
     <svg id="diagram"></svg>
     <div id="legendBox">
         <div class="legend" id="legend1">
-            <p>Here are three Matrix homeservers, each with one client connected.</p>
-            <p>The clients are all participating in the same Matrix room, which
-                is synchronised across the three participating servers.</p>
+            <p>下面是三个 Matrix homeserver，每个都连接了一个客户端。</p>
+            <p>客户端都参与同一个 Matrix 聊天室，该 Matrix 聊天室在三个参与服务器上同步。</p>
         </div>
         <div class="legend hidden" id="legend2">
-            Alice sends a JSON message to a room on her homeserver.
+            Alice 向其 homeserver 上的一个聊天室发送了一条 JSON 消息。
             <pre>
 curl -XPOST
  -d '{"msgtype":"m.text", "body":"hello"}'
@@ -19,16 +18,12 @@ curl -XPOST
 }</pre>
         </div>
         <div class="legend hidden" id="legend3">
-            Alice's homeserver adds the JSON to its graph of history, linking
-            it to the most recent unlinked object(s) in the graph.
+            Alice 的家庭服务器会将 JSON 添加到其历史记录图中，并将其链接到图中最近的未链接对象。
             <br />
-            The server then signs the JSON <b>including the signatures of the
-                parent objects</b> to calculate a tamper-resistant signature for
-            the history.
+            然后，服务器会对 JSON 进行签名，其中包括父对象的签名，用以历史记录的防篡改
         </div>
         <div class="legend hidden" id="legend4">
-            The server then sends the signed JSON over HTTPS to any other
-            servers which are participating in the room.
+            然后，服务器通过 HTTPS 将已签名的 JSON 发送给参与聊天室的其他服务器。
             <pre>
 curl –XPOST –H 'Authorization: X-Matrix origin=alice.com,...' –d '{
     "ts": 1413414391521,
@@ -52,17 +47,16 @@ curl –XPOST –H 'Authorization: X-Matrix origin=alice.com,...' –d '{
 }' https://matrix.bob.com:8448/_matrix/federation/v1/send/916d...</pre>
         </div>
         <div class="legend hidden" id="legend5">
-            The destination servers perform a series of checks on the message:
+            目标服务器会对报文进行一系列检查：
             <ul>
-                <li>Validate the message signature to protect against tampering with history</li>
-                <li>Validate the HTTP request's auth signature to protect against identity spoofing</li>
-                <li>Validate whether Alice's historical permissions allow her to send this particular message</li>
+                <li>验证信息签名，防止历史记录被篡改</li>
+                <li>验证 HTTP 请求的认证签名，防止身份欺骗</li>
+                <li>验证 Alice 的历史权限是否允许她发送此特定信息</li>
             </ul>
-            If these checks pass, the JSON is added to the destination servers' graphs.
+            如果这些检查通过，JSON 将被添加到目标服务器的图表中。
         </div>
         <div class="legend hidden" id="legend6">
-            Destination clients receive Alice's message with a long-lived GET request.
-            (Clients are free to implement more efficient transports than polling as desired).
+            目标客户端通过一个长期存在的 GET 请求接收 Alice 的信息（客户端可根据需要实现比轮询更有效的传输方式）。
             <pre>
 curl "https://matrix.bob.com/_matrix/client/v2/sync?access_token=ACCESS_TOKEN"
 {
@@ -85,51 +79,31 @@ curl "https://matrix.bob.com/_matrix/client/v2/sync?access_token=ACCESS_TOKEN"
 }</pre>
         </div>
         <div class="legend hidden" id="legend7">
-            Bob sends a response to Alice's message, and his server adds his
-            message into his copy of the room's history, linking it to the most
-            recent unlinked object in the graph - Alice's last message.
+            Bob 发送了对 Alice 信息的回复，他的服务器会将他的信息添加到他的聊天室历史副本中，并将其链接到图中最近的未链接对象--Alice 的最后一条信息。
         </div>
         <div class="legend hidden" id="legend8">
-            Meanwhile, Charlie also responds to Alice's message - racing with
-            Bob's message.
+            与此同时，Charlie 也回复了 Alice 的信息--与 Bob 的信息赛跑。
             <br />
-            Alice, Bob and Charlie's homeservers all have different views of
-            the message history at this point - but Matrix is designed to
-            handle this inconsistency.
+            此时，Alice, Bob Charlie 的 homeservers 对消息历史都有不同的看法，但 Matrix 就是为了处理这种不一致性而设计的。
         </div>
         <div class="legend hidden" id="legend9">
-            Bob's homeserver relays his message through to Alice and Charlie's
-            servers, who accept it.
+            Bob 的 homeserver 将他的信息转发给 Alice 和 Charlie 的服务器，后者接受了他的信息。
             <br />
-            At this point Alice and Bob are in sync, but Charlie's room
-            history has split - both messages 2 and 3 follow on from message 1.
-            This is not a problem; Charlie's client will be told about Bob's
-            message and can handle it however it chooses.
+            此时，Alice 和 Bob 是同步的，但 Charlie 的房间历史记录却分裂了--信息 2 和信息 3 都是信息 1 的后续。这不是问题；查理的客户端将被告知鲍勃的信息，并可自行决定如何处理。
         </div>
         <div class="legend hidden" id="legend10">
-            Charlie's homeserver relays his message through as well, at which
-            point all 3 servers have a consistent view of history again
-            (including the race between Bob and Charlie). All three clients
-            have seen all three messages, and the room history is now back in
-            sync across the participating servers.
+            Charlie 的 homeserver 也转发了他的信息，此时，所有 3 台服务器对历史记录（包括 Bob 和 Charlie 之间的比赛）都有了一致的看法。所有三个客户端都看到了所有三条信息，现在聊天室历史记录在参与的服务器上又恢复了同步。
         </div>
         <div class="legend hidden" id="legend11">
-            Later on, Alice sends another message - her homeserver adds it to
-            her history, and links it to the most recent unlinked objects in
-            the graph: Bob and Charlie's messages.
+            稍后，Alice 又发送了一条信息--她的家庭服务器会将这条信息添加到她的历史记录中，并将其链接到图中最近的未链接对象： Bob 和 Charlie 的信息。
             <br />
-            This effectively merges the
-            split in history and asserts the integrity of the room (or at
-            least her view of it).
+            这有效地合并了历史上的分裂，维护了聊天室的完整性（至少是她对聊天室的看法）。
         </div>
         <div class="legend hidden" id="legend12">
-            Alice's message is then relayed to the other participating
-            servers, which accept it and update their own history with the
-            same rules, ensuring eventual consistency and integrity of the
-            distributed room history.
+            然后，Alice 的信息会被转发给其他参与服务器，这些服务器接受后会以同样的规则更新自己的历史记录，从而确保分布式房间历史记录的最终一致性和完整性。
         </div>
         <button class="legendNav">
-            Next
+            下一步
         </button>
     </div>
 </div>

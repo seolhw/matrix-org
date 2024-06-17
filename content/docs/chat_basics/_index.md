@@ -1,5 +1,5 @@
 +++
-title = "Chat basics"
+title = "通信基础知识"
 weight = 100
 template = "docs/with_menu.html"
 render = false

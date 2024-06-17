@@ -1,96 +1,96 @@
 +++
-title = "Writing a good \"This Week in Matrix\" entry"
+title = "写一篇好的 Matrix周刊 文章"
 +++
 
-This Week in Matrix (TWIM) is a weekly digest on the blog in which
-anyone can post small concise updates about their Matrix projects, events
-and happenings.
-Those updates are collected in a digest, published every Friday on
-the [matrix.org blog](/blog/twim). It aims to allow the community to show off their
-progress in the Matrix ecosystem.
+Matrix 这一周（TWIM）是博客上的每周摘要，任何人都可以在其中发布关于他们的 Matrix 项目、活动的简短更新。
+任何人都可以在其中发布有关其 Matrix 项目、活动和事件的简明扼要的小更新。
+和发生的事情。
+这些更新将被收集在文摘中，每周五发布在
+matrix.org博客](/blog/twim)上发布。其目的是让社区展示他们在 Matrix
+在 Matrix 生态系统中取得的进展。
 
-## Prerequisites
+##前提条件
 
-There are some guidelines you should be aware of before publishing your
-update to TWIM:
+在向 TWIM 发布你的
+在 TWIM 上发布更新之前，你需要了解一些指导原则：
 
-Like all things on matrix.org your post has to follow and comply with the
-[Matrix.org Code of Conduct](/legal/code-of-conduct). Additionally the authors
-can decline entries related to dangerous or unethical software.
+与 Matrix.org 上的所有内容一样，你的帖子必须遵循并遵守
+[Matrix.org 行为准则](/legal/code-of-conduct)。此外，作者
+可以拒绝与危险或不道德软件相关的条目。
 
-## Publishing
+## 发布
 
-For publishing to TWIM all you need is a Matrix account and participate in the
+要在 TWIM 上发表文章，你只需拥有 Matrix 帐户并参与
 [#thisweekinmatrix:matrix.org](https://matrix.to/#/#thisweekinmatrix:matrix.org)
-Matrix room.
+Matrix 聊天室。
 
-After joining you should start your post with a mention of the user "TWIM".
-Easiest to do this is to use your client's mention completion feature.
-After that mention everything contained in the message will be part of the entry.
-If you want to post more than one project please split each into individual entries.
+加入后，你应在文章开头提及用户 "TWIM"。
+最简单的方法是使用客户端的提及完成功能。
+提及后，信息中包含的所有内容都将成为条目的一部分。
+如果你想发布多个项目，请将每个项目拆分成单独的条目。
 
-Images and other media are supported as well. To add them you should react with
-`⭕` on your media file. Please make sure to do this after your entry so it gets added
-to the correct entry and not on another project of yours.
+也支持图片和其他媒体。要添加它们，你应使用
+⭕"反应在你的媒体文件上。请确保在输入后执行此操作，以便将其添加到正确的输入中，而不是添加到其他输入中。
+到正确的条目中，而不是添加到你的其他项目中。
 
-## How to make it a good entry
+## 如何制作优秀作品
 
-Making a good entry can have some challenges. Below are some recommendations
-to help the authors to lower their workload when publishing the post.
+制作一个好的参赛作品可能会遇到一些挑战。以下是一些建议
+以帮助作者减轻发布文章时的工作量。
 
 ### Markdown
 
-The bot expected markdown as part of the plaintext event body. Please use a client which
-does send the plaintext as markdown. While we currently accept other formats as well
-it will add manual work for the post by a human.
+机器人希望将标记符作为纯文本事件正文的一部分。请使用
+以 markdown 格式发送明文的客户端。虽然我们目前也接受其他格式
+但这将增加人工发布的工作量。
 
-### Do not treat it as a Changelog
+###不要将其视为更改日志
 
-Copying a Changelog is easy but not what TWIM is about. Ideally we prefer posts
-which are a few paragraphs long outlining features which were added or changed
-over a bulletpoint list. This makes it more readable to humans. You may still of course
-link to the changelog.
+复制更改日志很简单，但这不是 TWIM 的宗旨。理想情况下，我们更喜欢
+用几段文字概述添加或更改的功能
+而不是要点列表。这样人类更容易阅读。当然，你仍然可以
+链接到更新日志。
 
-### Add images or videos
+###添加图片或视频
 
-Adding images or a demo to your post can help explaining the feature to other people.
-It also can help getting people interested in your project.
+在帖子中添加图片或演示有助于向其他人解释功能。
+这也有助于让人们对你的项目产生兴趣。
 
-### Contact info and Source link
+### 联系信息和源代码链接
 
-Many times people will ask about things published in TWIM. Often times people will
-use the TWIM Matrix room itself to do that. However often time it would have been a better
-choice to instead ask inside of a project room where the devs are present.
+很多时候，人们会询问在 TWIM 上发布的内容。很多时候，人们会
+人们通常会使用 TWIM Matrix室来询问。但很多时候
+选择在有开发人员在场的项目室中提问。
 
-### Correct usage of Headers
+### 正确使用标题
 
-As the [TWIM helper bot](https://github.com/haecker-felix/hebbot) takes messages
-as verbatism it is helpful to the authors to use the right header level.
+由于 [TWIM 助手机器人](https://github.com/haecker-felix/hebbot) 将消息
+作为动词，因此使用正确的标头级别对作者很有帮助。
 
-We recommend `H3` (`###` in markdown) for the project title and `H4` (`####`in markdown)
-for all titles below it. This way there is only minor human interaction necessary or none
-at all.
+我们建议项目标题使用 `H3` (在 markdown 中为 `###`)，下面的所有标题使用 `H4` (在 markdown 中为 `####`)
+用于其下的所有标题。这样就只需要少量的人工交互，或者根本不需要
+或根本不需要。
 
-Additionally please do not use headers for links but instead use bold links if you
-want to highlight the links.
+此外，如果你想突出链接，请不要使用链接标题，而使用粗体链接。
+粗体链接。
 
-### Correct linking
+### 正确链接
 
-Due to the static site generator matrix.org is using we require bare links to be
-surrounded by `<>`. Most matrix clients dont do this. If you are able to add those around
-links it would help us.
+由于 matrix.org 使用的是静态网站生成器，我们要求裸链接必须用
+用 `<>` 包围。大多数Matrix客户都不这样做。如果你能在
+链接，这将对我们有所帮助。
 
-## Reactions and adding a project to the bot
+## 反应并向机器人添加项目
 
-For regular projects the bot can additionally to emoji reactions also recognise projects.
-This helps because there will be a short project description as well as a link to the project
-at the start of the entry.
+对于常规项目，机器人除了可以识别表情反应外，还可以识别项目。
+这将有助于在项目开始时提供简短的项目描述和项目链接。
+链接。
 
-To add your project to this list please head over to [the configuration file](https://github.com/matrix-org/twim-config/blob/master/charts/files/config.toml)
-which holds this information. Please be aware that it may take some time for changes
-to get reflected in the room.
+要将你的项目添加到此列表中，请访问 [配置文件](https://github.com/matrix-org/twim-config/blob/master/charts/files/config.toml)
+配置文件]() 请注意，更改可能需要一些时间
+请注意，更改可能需要一些时间才能反映到聊天室中。
 
-You can also take a look at the same configuration file to see which reaction has
-which meaning. It can help us to also choose the correct category for your project.
-However note that ultimately the TWIM authors are the ones deciding
-on the category for a project.
+你也可以查看相同的配置文件，以了解哪些反应具有
+有什么意义。这也有助于我们为你的项目选择正确的类别。
+不过请注意，最终还是由 TWIM 作者来决定项目的类别。
+项目的类别。

@@ -1,17 +1,19 @@
 +++
-title = "Contact"
+title = "联系"
 +++
 
-The best place to get information and connect is on Matrix itself - starting in
-[Matrix HQ (#matrix:matrix.org)](https://matrix.to/#/#matrix:matrix.org) or in the [Office of the Matrix.org Foundation (#foundation-office:matrix.org)](https://matrix.to/#/#foundation-office:matrix.org).
+获取信息和联系的最佳地点是 Matrix 本身 - 从
+[Matrix 总部 (#matrix:matrix.org)](https://matrix.to/#/#matrix:matrix.org) 或 [Matrix.org 基金会办公室 (#foundation-office:matrix.org)](https://matrix.to/#/#foundation-office:matrix.org) 开始。
 
-However, if you prefer email, or have a need to be more direct:
+不过，如果你更喜欢电子邮件，或者需要更直接的方式：
 
-- [abuse@matrix.org](mailto:abuse@matrix.org) if you need to urgently report
-  abuse on the platform
-- [support@matrix.org](mailto:support@matrix.org) for more general support and
-  commercial queries
-- [security@matrix.org](mailto:security@matrix.org) to disclose security issues.
-  Also see our [Security Disclosure Policy](/security-disclosure-policy/)
+- [abuse@matrix.org](mailto:abuse@matrix.org)，如果你需要紧急报告
+  平台上的滥用行为
+- [support@matrix.org](mailto:support@matrix.org) 更多一般支持和
+  商业查询
+- [security@matrix.org](mailto:security@matrix.org) 披露安全问题。
+  另请参阅我们的 [安全披露政策](/security-disclosure-policy/)
 
-You can find our staff members, and contact details for some of them, in the [About](/about/) section.
+你可以在[关于](/about/)部分找到我们的工作人员以及其中一些人的详细联系方式。
+
+通过DeepL.com（免费版）翻译

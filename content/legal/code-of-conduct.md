@@ -1,92 +1,93 @@
 +++
-title = "Matrix Code of Conduct"
+title = "Matrix 行为准则"
 version = "2.0.0"
 +++
 
-This code of conduct outlines our expectations for participants within the Matrix community, as well as steps for reporting unacceptable behaviour. We are committed to providing a welcoming and inspiring community for all, and expect our code of conduct to be honoured. Anyone who violates this code of conduct may be banned from the community.
+本行为准则概述了我们对 Matrix 社区参与者的期望，以及报告不可接受行为的步骤。我们致力于为所有人提供一个热情好客、鼓舞人心的社区，并希望大家遵守我们的行为准则。任何违反本行为准则的人都可能被禁止进入社区。
 
-This applies to conversation in the any room in the Matrix Space ([#team:matrix.org](https://matrix.to/#/#team:matrix.org)) and commits and comments relating to any project in the [matrix-org](https://github.com/matrix-org) Github space.
+这适用于 Matrix 空间（[#team:matrix.org](https://matrix.to/#/#team:matrix.org)）中任何聊天室的对话，以及 [matrix-org](https://github.com/matrix-org) Github 空间中与任何项目相关的提交和评论。
  
-Our open source community strives to:
+我们的开源社区致力于
 
-* **Be friendly and patient.**
-* **Be welcoming**: We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to members of any race, ethnicity, culture, national origin, colour, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.
-* **Be considerate**: Your work will be used by other people, and you in turn will depend on the work of others. Any decision you take will affect users and colleagues, and you should take those consequences into account when making decisions. Remember that we're a world-wide community, so you might not be communicating in someone else's primary language.
-* **Be respectful**:  Not all of us will agree all the time, but disagreement is no excuse for poor behaviour and poor manners. We might all experience some frustration now and then, but we cannot allow that frustration to turn into a personal attack. It's important to remember that a community where people feel uncomfortable or threatened is not a productive one.
-* **Be careful in the words that we choose**: Be kind to others. Do not insult or put down other participants. Harassment and other exclusionary behaviour aren't acceptable.
-* **Try to understand why we disagree**: Disagreements, both social and technical, happen all the time. It is important that we resolve disagreements and differing views constructively. Remember that we're different. The strength of our community comes from its diversity, people from a wide range of backgrounds. Different people have different perspectives on issues. Being unable to understand why someone holds a viewpoint doesn't mean that they're wrong. Don't forget that it is human to err and blaming each other doesn't get us anywhere. Instead, focus on helping to resolve issues and learning from mistakes.
-
-|
-
-## Definitions
-
-Harassment includes, but is not limited to:
-
-- Offensive comments related to gender, gender identity and expression, sexual orientation, disability, mental illness, neuro(a)typicality, physical appearance, body size, race, age, regional discrimination, political or religious affiliation
-- Unwelcome comments regarding a person's lifestyle choices and practices, including those related to food, health, parenting, drugs, and employment
-- Deliberate misgendering. This includes deadnaming or persistently using a pronoun that does not correctly reflect a person's gender identity. You must address people by the name they give you when not addressing them by their username or handle
-- Physical contact and simulated physical contact (eg, textual descriptions like "*hug*" or "*backrub*") without consent or after a request to stop
-- Threats of violence, both physical and psychological
-- Incitement of violence towards any individual, including encouraging a person to commit suicide or to engage in self-harm
-- Deliberate intimidation
-- Stalking or following
-- Harassing photography or recording, including logging online activity for harassment purposes
-- Sustained disruption of discussion
-- Unwelcome sexual attention, including gratuitous or off-topic sexual images or behaviour
-- Pattern of inappropriate social contact, such as requesting/assuming inappropriate levels of intimacy with others
-- Continued one-on-one communication after requests to cease
-- Deliberate "outing" of any aspect of a person's identity without their consent except as necessary to protect others from intentional abuse
-- Publication of non-harassing private communication
+* 友好、耐心**。
+* 欢迎**： 我们努力成为一个欢迎和支持各种背景和身份的人的社区。这包括但不限于任何种族、民族、文化、国籍、肤色、移民身份、社会和经济阶层、教育水平、性别、性取向、性别认同和表达、年龄、体型、家庭状况、政治信仰、宗教以及身心能力。
+** 要考虑周到**： 你的作品将被其他人使用，反过来，你也将依赖他人的作品。你做出的任何决定都会影响到用户和同事，因此你在做出决定时应考虑到这些后果。请记住，我们是一个世界性的社区，因此你可能无法使用他人的主要语言进行交流。
+** 尊重他人**：  并不是所有人都会在所有时候都意见一致，但意见分歧并不能成为不良行为和不良礼仪的借口。我们偶尔都会遇到一些挫折，但我们不能让挫折变成人身攻击。重要的是要记住，一个让人感到不舒服或受到威胁的社区是没有生产力的。
+**我们要谨言慎行**： 善待他人。不要侮辱或贬低其他参与者。不接受骚扰和其他排斥行为。
+* 尝试理解我们的分歧**： 社会和技术方面的分歧时有发生。重要的是，我们要建设性地解决分歧和不同意见。记住我们与众不同。我们社区的力量来自其多样性，来自不同背景的人们。不同的人对问题有不同的看法。无法理解别人持有某种观点的原因并不意味着他们就是错的。不要忘记，犯错是人之常情，相互指责不会有任何好处。相反，要把重点放在帮助解决问题和从错误中吸取教训上。
 
 |
 
-We will not act on complaints regarding:
+## 定义
 
-- Good faith and non-malicious conduct whose object is to ameliorate the conditions of disadvantaged individuals or groups including those that are disadvantaged because of race, national or ethnic origin, colour, religion, sex, age or mental or physical disability.
-- Reasonable communication of boundaries, such as "leave me alone," "go away," or "I'm not discussing this with you"
-- Refusal to explain or debate social justice concepts
-- Communicating in a 'tone' you don't find congenial
-- Criticizing racist, sexist, cissexist, or otherwise oppressive behaviour or assumptions
+骚扰包括但不限于
 
-|
-
-### Diversity Statement
-
-We encourage everyone to participate and are committed to building a community for all. Although we will fail at times, we seek to treat everyone both as fairly and equally as possible. Whenever a participant has made a mistake, we expect them to take responsibility for it. If someone has been harmed or offended, it is our responsibility to listen carefully and respectfully, and do our best to right the wrong.
-
-Although this list cannot be exhaustive, we explicitly honour diversity in age, gender, gender identity or expression, culture, ethnicity, language, national origin, political beliefs, profession, race, religion, sexual orientation, socioeconomic status, and technical ability. We will not tolerate discrimination based on any of the protected
-characteristics above, including participants with disabilities.
-
-|
-
-### Reporting Issues
-
-If you experience or witness unacceptable behaviour — or have any other concerns — please report it by contacting us via abuse@matrix.org. All reports will be handled with discretion. In your report please include:
-
-- Your contact information.
-- Names (usernames and nicks, real names, and/or pseudonyms) of any individuals involved. If there are additional witnesses, please
-include them as well. Your account of what occurred, and if you believe the incident is ongoing. 
-- The date and time of the incident (or start of incident).
-- Any additional information that may be helpful.
-
-After filing a report you will receive an automated response confirming delivery of your report. Typically, we do not answer abuse reports unless we require further clarification.
-
-If the person who is harassing you is part of the response team, they will recuse themselves from handling your incident. If the complaint originates from a member of the response team, it will be handled by a different member of the response team. We will respect confidentiality requests for the purpose of protecting victims of abuse.
-
-You are also able to report abusive content via your chosen Matrix client, by clicking the event in question and selecting report. Please note these reports go to your homeserver administrator.
-
-We use [Mjolnir](https://github.com/matrix-org/mjolnir) to handle the moderation of rooms under this Code of Conduct, via the bot @administrator:matrix.org. Please note that pinging this account, or any other staff accounts, is not the appropriate reporting mechanism. Repeated in-room reports might result in moderation action.
+- 与性别、性别认同和表达、性取向、残疾、精神疾病、神经（典型）、外貌、体型、种族、年龄、地区歧视、政治或宗教信仰有关的攻击性评论
+- 关于个人生活方式选择和做法的不受欢迎的评论，包括与食物、健康、养育子女、毒品和就业有关的评论
+- 故意误用性别。这包括错误称呼或持续使用不能正确反映某人性别认同的代名词。在不使用用户名或句柄称呼他人时，你必须使用他们给你起的名字。
+- 未经同意或在要求停止后进行身体接触或模拟身体接触（例如，"*拥抱*"或 "*搓背*"等文字描述）。
+- 威胁使用暴力，包括身体暴力和心理暴力
+- 煽动对任何人实施暴力，包括鼓励他人自杀或自残
+- 蓄意恐吓
+- 跟踪或尾随
+- 骚扰性摄影或录音，包括出于骚扰目的记录在线活动
+- 持续扰乱讨论
+- 不受欢迎的性关注，包括无端或离题的性图像或行为
+- 不适当的社交接触模式，如要求/假定与他人有不适当的亲密接触
+- 在要求停止后继续进行一对一交流
+- 未经他人同意，故意 "公开 "其身份的任何方面，但为保护他人免受蓄意虐待而必须公开者除外
+- 公布非骚扰性的私人交流
 
 |
 
-### Attribution & Acknowledgements
+我们不会对以下方面的投诉采取行动
 
-This Code of Conduct is based on the [TODO Group](https://twitter.com/todogroup)'s [Open Code of Conduct template](https://github.com/todogroup/opencodeofconduct), but with some modifications. 
+- 善意和非恶意的行为，其目的是改善弱势个人或群体的状况，包括因种族、民族或人种、肤色、宗教、性别、年龄或身心残疾而处于弱势的个人或群体。
+- 合理的界限沟通，如 "别烦我"、"走开 "或 "我不和你讨论这个问题"。
+- 拒绝解释或辩论社会公正概念
+- 用你不喜欢的 "语气 "交流
+- 批评种族主义、性别歧视、同性歧视或其他压迫行为或假设
 
-### Attribution & Acknowledgements
 
-Version history
+|
 
-- 1.0.0 - first version of document - August 2018
-- 1.1.0 - adding metadata and removing slugs - September 2019
-- 2.0.0 - major updates to reporting procedures  - June 2023
+### 多元化声明
+
+我们鼓励每个人都参与进来，并致力于建设一个人人共享的社区。虽然我们有时会失败，但我们会尽可能公平、平等地对待每一个人。无论何时，只要参与者犯了错误，我们都希望他们能够承担责任。如果有人受到伤害或冒犯，我们有责任认真倾听、尊重他人，并尽力纠正错误。
+
+虽然这份清单不可能详尽无遗，但我们明确表示尊重年龄、性别、性别认同或表达方式、文化、种族、语言、民族血统、政治信仰、职业、种族、宗教、性取向、社会经济地位和技术能力方面的多样性。我们不会容忍基于上述任何受保护特征的歧视，包括残疾参与者。
+歧视，包括残疾参与者。
+
+|
+
+### 报告问题
+
+如果你遇到或目睹了不可接受的行为，或有任何其他问题，请通过 abuse@matrix.org 联系我们进行报告。我们将慎重处理所有报告。请在报告中注明
+
+- 你的联系信息。
+- 任何涉案人员的姓名（用户名和网名、真实姓名和/或化名）。如果有其他目击者，请
+如果有其他目击者，也请包括在内。你对所发生事件的描述，以及你是否认为事件仍在继续。
+- 事件发生（或开始）的日期和时间。
+- 任何可能有用的其他信息。
+
+提交报告后，你将收到自动回复，确认报告已送达。通常情况下，除非我们要求进一步说明，否则我们不会回复虐待报告。
+
+如果骚扰你的人是回复团队的成员，他们将回避处理你的事件。如果投诉来自响应团队的一名成员，则将由响应团队的另一名成员处理。我们将尊重保密要求，以保护滥用行为的受害者。
+
+你也可以通过你选择的 Matrix 客户端报告滥用内容，方法是点击相关事件并选择报告。请注意，这些报告将发送给你的homeserver管理员。
+
+我们使用 [Mjolnir](https://github.com/matrix-org/mjolnir)，通过机器人 @administrator:matrix.org 来管理本行为准则下的聊天室。请注意，ping 该账户或任何其他员工账户都不是适当的报告机制。重复的聊天室内报告可能会导致审核行动。
+
+|
+
+#### 署名和鸣谢
+
+本行为准则基于 [TODO 小组](https://twitter.com/todogroup) 的 [公开行为准则模板](https://github.com/todogroup/opencodeofconduct)，但做了一些修改。
+
+### 署名与致谢
+
+版本历史
+
+- 1.0.0 - 文档第一版 - 2018 年 8 月
+- 1.1.0 - 添加元数据并删除标点 - 2019 年 9 月
+- 2.0.0 - 主要更新报告程序 - 2023 年 6 月

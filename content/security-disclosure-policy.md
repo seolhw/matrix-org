@@ -1,48 +1,50 @@
 +++
-title = "Security Disclosure Policy"
+title = "安全披露政策"
 +++
 
-Matrix.org greatly appreciates investigative work into security vulnerabilities
-carried out by well-intentioned, ethical security researchers. We follow the
-practice of [responsible disclosure](https://en.wikipedia.org/wiki/Responsible_disclosure)
-in order to best protect Matrix's user base from the impact of security issues.
-On our side, this means:
+Matrix.org 高度赞扬安全漏洞调查工作
+安全研究人员开展的安全漏洞调查工作。我们遵循
+负责任的披露](https://en.wikipedia.org/wiki/Responsible_disclosure) 的做法
+以最大限度地保护 Matrix 的用户群免受安全问题的影响。
+就我们而言，这意味着
 
-- We will respond to security incidents as a priority.
-- We will work with you to establish a disclosure time frame for the reported
-  vulnerability. During this time frame, we will either work on a fix or decide
-  to accept the risk, after which we will disclose the vulnerability.
-- We will always transparently let the community know about any incident that
-  affects them.
-- After disclosing the vulnerability, we will credit you for the report in our
-  [Security Hall of Fame](/security-hall-of-fame/), if you wish.
+- 我们将优先处理安全事件。
+- 我们将与你合作，确定所报告漏洞的披露时限。
+  漏洞的披露时限。在此期限内，我们将努力修复漏洞或决定
+  接受风险，然后我们将披露漏洞。
+- 我们将始终以透明的方式让社区了解任何影响他们的事件。
+  影响他们的事件。
+- 公布漏洞后，我们将在我们的
+  [安全名人堂](/security-hall-of-fame/)，如果你愿意的话。
 
-In general, we will aim for a fix within 90 days of receiving your report, but
-we may propose a longer time frame (usually 120 days) for especially complex
-vulnerabilities. In some cases, when a vulnerability is particularly disruptive
-and/or easy to exploit, we may delay publishing technical details for an
-additional period after the fix is publicly available (usually no longer than
-30 days).
+一般来说，我们会争取在收到你的报告后 90 天内修复漏洞，但
+但对于特别复杂的漏洞，我们可能会建议延长时间（通常为 120 天）。
+漏洞。在某些情况下，如果漏洞特别具有破坏性
+和/或容易被利用的漏洞，我们可能会将公布技术细节的时间推迟到
+在漏洞修复公开后，我们可能会推迟一段额外的时间（通常不超过
+30 天）。
 
-If you have found a security vulnerability in Matrix, we ask that you disclose
-it responsibly by emailing [security@matrix.org](mailto:security@matrix.org).
-Optionally, if you want to encrypt your email, you can use our [PGP key](/.well-known/pgp-key.txt).
-Please do not discuss potential vulnerabilities in public without validating
-with us first.
+如果你发现了 Matrix 中的安全漏洞，我们请你
+security@matrix.org](mailto:security@matrix.org)。
+如果你想加密你的电子邮件，可以选择使用我们的 [PGP 密钥](/.owned/pgp-key.txt)。
+在未与我们验证之前，请不要在公开场合讨论潜在漏洞。
+的情况下，请不要在公开场合讨论潜在漏洞。
 
-On receipt, the security team will:
+收到报告后，安全团队将
 
-- Review the report, verify the vulnerability and respond with confirmation
-  and/or further information requests; we reply within 5 business days.
-- Once the reported security bug has been addressed we will notify the
-  Researcher, who is then welcome to optionally disclose publicly.
+- 审查报告、验证漏洞并回复确认和/或进一步的信息请求。
+  和/或要求提供进一步信息；我们会在 5 个工作日内回复。
+- 一旦报告的安全漏洞得到解决，我们将通知
+  欢迎研究人员选择公开披露。
 
-The following is a list of known issues and/or things we do not consider to be
-an issue. Please **do not** send reports regarding the following:
+以下是已知问题和/或我们认为不存在的问题。
+问题。请**不要**发送有关以下内容的报告：
 
-- Issues relating to SPF or DMARC.
+- 与 SPF 或 DMARC 有关的问题。
 
-The Matrix.org Foundation does not ordinarily provide bug bounties, though
-organisations building on top of Matrix may do so in future. We maintain a
-[Security Hall of Fame](/security-hall-of-fame) to recognise those who have
-responsibly disclosed security issues to us in the past.
+Matrix.org 基金会通常不提供漏洞悬赏，不过
+在 Matrix 基础上构建的组织将来可能会这样做。我们维护一个
+[安全名人堂](/security-hall-of-fame) 以表彰那些负责任地向我们披露安全问题的人。
+安全名人堂](/security-hall-of-fame) 以表彰过去负责任地向我们披露安全问题的人。
+
+通过DeepL.com（免费版）翻译

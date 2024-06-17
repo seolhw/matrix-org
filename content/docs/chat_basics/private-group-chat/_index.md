@@ -1,164 +1,111 @@
 +++
-title = "Private Group Chat"
+title = "私人群聊"
 weight = 200
 template = "docs/with_menu.html"
 [extra]
 emoji = "🧑‍🤝‍🧑"
-tile = "I want to create a private group chat"
+tile = "我想创建一个私人群聊"
 updated = "2022-10-18T16:00:00Z"
 meta_description = """
-Matrix can be used to create small private group chats. It can be used to send
-messages, invite others, but it also has moderation features to keep the group
-safe.
+Matrix 可用于创建小型私人群聊。它可以用来发送
+消息、邀请他人，但它也具有管理功能，以确保群组的安全。
+安全。
 """
 +++
 
-The simplest way to get started is to create a private group chat so you can
-safely try some Matrix features. To do so, click on the large "Create a Group
-Chat" button in the main panel.
+最简单的入门方法是创建一个私人群聊，这样你就可以安全地试用一些 Matrix 功能。为此，请单击主面板上的 "创建群组" 按钮。
 
-A room creation screen will appear. For our first steps, we're going to create a
-private room so we can experiment safely without anyone watching:
+这时会出现一个创建聊天室的界面。作为第一步，我们将创建一个私人聊天室，这样我们就可以在没有任何人监视的情况下安全地进行测试：
 
-* Let's call the room "Exploring how Element Works".
-* For the topic, we can use "I don't even know what a topic is!".
-* Leave "Private room (invite only)" selected
-* Leave "Enable end-to-end encryption" switched on
-* No need to fiddle with advanced settings for now, we can click the "Create
-  room" button.
+* 将聊天室命名为 "Element 如何工作"。
+* 对于主题，我们可以使用 "未知主题"。
+* 保留 "私人聊天室（仅限邀请）"选项
+* 打开 "启用端到端加密 "选项
+* 暂时无需操作高级设置，我们可以点击 "创建聊天室" 按钮。
 
-An empty private room will be created with only you inside. The room is secured
-using a method called "end-to-end encryption" to prevent anyone else than the
-members of this room from deciphering the messages. The math and cryptography
-behind it is quite complex, but fortunately you don't need to understand any of
-it.
+一个空的私人聊天室将被创建，里面只有你一个人。聊天室的安全使用一种称为 "端到端加密" 的方法，以防止该聊天室成员以外的任何人破译信息。这背后的数学和密码学相当复杂，但幸运的是，你不需要了解它。
 
-Every member of an encrypted private room has a secret piece of information they
-can use to decrypt the messages. Losing access to this secret piece of
-information means losing access to history and new messages in encrypted rooms.
+加密聊天室的每个成员都有一条密钥信息，他们可以用来可以用来解密信息。如果失去对这一密钥信息的访问权限，就意味着无法访问加密聊天室的历史记录和新信息。
 
-This secret piece of information used to decrypt messages is stored on a digital
-safe. The key unlocking that digital safe is called a Security Key. Element
-walks you through the set-up of this digital safe called "Secure Backup" when
-you click on Continue on the top-left pop-up.
+用于解密信息的密钥信息存储在数字保险箱中。打开数字保险箱的钥匙称为安全密钥。Element 会指导你设置这个名为 "安全备份" 的数字保险箱。
+
+点击左上角弹出窗口中的 "继续"。
 
 ![](create-room-set-up-encryption-highlighted.png)
 
-You can either let Element generate a Security Key that is difficult to guess to
-secure your digital safe, or pick your own. Unless you are an expert and know
-exactly what you are doing, in most cases it's better to let Element generate it
-for you. Leave "Generate a Security Key" ticked, and click on "Continue".
+你可以让 Element 生成一个难以猜测的安全密钥，以确保数字保险箱的安全。或者自己选择一个。除非你是专家，否则大多数情况下，最好让 Element 为你生成安全密钥。勾选 "生成安全密钥"，点击 "继续"。
 
 ![](setup-safe-generate-security-key.png)
 
-Element will display the Security Key it has generated. This is a unique and
-very secret key that should only be known by you. In your day to day usage of
-Matrix, you will not need it. But if all your devices connected to Matrix stop
-functioning, are stolen, or if you just lose access to them: this Security Key
-is the only way for you to regain access to your messages. You should store it
-in a password manager if you use one, or at least print it and save it somewhere
-safe. As inconvenient as it sounds, this is necessary to ensure nobody else but
-you can read encrypted messages.
+Element 将显示生成的安全密钥。这是一个独一无二的密钥，安全密钥非常重要，应该妥善保存。
 
-Make sure to download and print the security key before clicking on Continue, as
-it will never be displayed again and cannot be recovered.
+确保在点击继续之前下载并保存安全密钥，因为它将永远不会再显示，也无法恢复。
 
 ![](setup-safe-save-security-key.png)
 
-### Sending your first messages
+### 发送第一条信息
 
-Voilà, you're in your own group chat! In the Matrix jargon, chats are called
-rooms. Let's give it a try immediately and type a message, then either press the
-return key or click on the send button.
+瞧，你进入了自己的群聊！让我们马上试一试，输入一条信息，然后按回车键或点击发送按钮。
 
 ![](experiment-send-first-message.png)
 
-You can see your message in the room! That large area where your message appears
-(and soon others' as well) is called the timeline. But look more closely: you
-made a typo! Fortunately, Matrix supports message edits, either by pressing the
-up arrow of the keyboard or by clicking the pen icon when hovering the mouse
-over the message we want to edit.
+你可以在聊天室里看到你的信息！信息按照时间线排列。Matrix 支持信息编辑，键盘敲击向上箭头，或将鼠标悬停在要编辑的信息上时点击钢笔图标。
 
 ![](experiment-click-edit.png)
 
-Fixing the typo and either pressing return or clicking "Save" will update the
-message for everyone else in the room.
+修改错别字后，按回车键或点击 "保存"，就可以为聊天室里的其他人更新信息。
 
-But now you realise… this message doesn't add much to the conversation. Maybe
-it's worth removing it entirely? To do so, hover the mouse over the message you
-want to remove, and click on the bin.
+如果想要删除这条信息，则需要将鼠标悬停在要删除的信息上，然后点击 Remove 按钮。
 
 ![](experiment-hover-and-bin.png)
 
-There are other fun ways to handle a conversation in Matrix, such as replies or
-threads. We suggest you to play around with the interface of this room: be bold,
-you can't break anything!
+你现在可以随意探索聊天室的内容，大胆一点。
 
-But it starts to feel a little lonely here. How about inviting friends to this
-group chat?
+不过，这里开始让人感觉有点孤单。邀请朋友加入这个群聊？
 
-### Inviting people
 
-To invite friends to your group chat, click on the circled `i` on the top right
-corner. It opens the right panel. Click on "People" to display the list of
-members of this room: you should be the only one there for now.
+### 邀请好友
+
+要邀请好友加入群聊，请单击右上角带圈的 `i`。打开右侧面板。它将打开右侧面板。点击 "People"，显示此聊天室的目前应该只有你一个人。
 
 ![](experiment-hover-and-bin.png)
 
-Click on "Invite to this room" on top of the people list, and a prompt will open
-so you can invite your friends to join you in Matrix. If they're already on
-Matrix, enter their Matrix ID. If they're not, enter their email address and
-they will be invited to join.
+点击人员列表上方的 "Invite to this room（邀请到此聊天室）"，系统会弹出提示你就可以邀请朋友加入 Matrix。如果他们已经在 Matrix 上，请输入他们的 Matrix ID。如果他们还没有，请输入他们的电子邮件地址，然后
+他们将被邀请加入。
 
 ![](invite-name.png)
 
-The person you invited can either accept or decline the invite. If they accept
-it, you should see them joining the room. The more the merrier!
+你邀请的人可以接受或拒绝邀请。如果他们接受你就会看到他们加入聊天室。人越多越好！
 
 ![](invite-hello.png)
 
-## Keeping the group safe
+### 保证群组安全
 
-### Removing messages or people from the group chat
+### 从群聊中删除信息或人员
 
-It's great to be able to have a conversation with nice people, but some of them
-can turn nasty. It's important to keep your group chats healthy and safe. When
-troublemakers start being annoying, you can redact their messages. You can do it
-the same way you did it for your messages: hover the message, click on the three
-dots, and click on "Remove"
+能和好人聊天是件好事，但有些人会变得很讨厌。保持群聊的健康和安全非常重要。当麻烦制造者开始令人讨厌时，你可以删除他们的信息。鼠标悬停到消息处，点击三个点，然后点击 "删除"。
 
 ![](redact-menu.png)
 
-You can provide a reason why the message is redacted, but it's not strictly
-mandatory. Once it's removed, a placeholder is going to be displayed instead.
+你可以提供编辑信息的理由，也可以不提供。一旦删除，就会显示一个占位符。
 
-If the person sent a lot of messages that need to be deleted, you can click on
-their avatar to open the details view in the right panel. Scroll to the bottom
-of the right panel and click on "Remove recent messages".
+如果对方发送了很多需要删除的信息，你可以点击他们的头像，打开右侧面板的详细信息视图。滚动到右面板底部，点击 "删除最近信息"。
 
 ![](redact-redact-all.png)
 
-But sometimes removing the messages is not enough, and the troublemaker doesn't
-want to be reasoned with. In such a case, you can remove them from the private
-group chat. To do so, click on their avatar in the timeline, scroll to the
-bottom of the right panel, and click on "Remove from room".
+但有时删除信息还不够，麻烦制造者还不想和你讲道理。不想跟他讲道理。在这种情况下，你可以从私人群聊中删除。要这样做，请单击时间轴上的头像，滚动到右面板底部，然后单击右面板底部，点击 "从聊天室删除"。
 
 ![](redact-kick.png)
 
-### Getting help keeping the group safe
+### 帮助维护群组安全
 
-So far, only the person who created the group chat has enough privileges to
-remove messages or people from the conversation. Those privileges are
-technically called a "Power Level", or a "Role" in Element.
+到目前为止，只有创建群聊的人拥有足够的权限来删除对话中的信息或人员。这些权限技术上称为 "权力级别"，或 Element 中的 "角色"。
 
-With the "Default" role, people can only participate in the conversation.
-Element defines two other roles: "Moderator" and "Admin".
+使用 "默认 "角色，人们只能参与对话。Element 还定义了另外两个角色： "主持人 "和 "管理员"。
 
 ![](role.png)
 
-If you promote someone to "Moderator", they will be able to redact other people's
-messages and remove them from the room. You can demote the moderators back
-to the default role whenever you want.
+如果将某人提升为 "主持人"，他就可以编辑其他人的信息并将其从聊天室中删除。你可以随时将主持人降回到默认角色。
 
-If you promote someone to "Admin", they become co-owners of the room with you,
-and you cannot take it back! Be very careful who you promote to administrator.
+如果你将某人晋升为 "管理员"，他们将与你一起成为聊天室的共同拥有者、而且你无法收回！请务必小心提拔管理员。
+

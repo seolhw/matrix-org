@@ -2,7 +2,6 @@
 name = "UpCloud"
 image = "upcloud.svg"
 description = """
-    Matrix.org is generously hosted by UpCloud!
-    Host your homeserver via UpCloud and get a $25 credit.
+    Matrix.org 由 UpCloud 慷慨托管！    通过 UpCloud 托管你的homeserver，即可获得 25 美元积分。
 """
 website = "https://upcloud.com/"

@@ -1,11 +1,11 @@
 +++
-title = "Getting Started"
+title = "入门"
 weight = 100
 template = "docs/with_menu.html"
 aliases = ["/docs/communities/"]
 [extra]
 emoji = "👪"
-tile = "Create a cozy place on Matrix for your community or organisation"
+tile = "在 Matrix 上创建一个组织或社区"
 updated = "2022-11-18T09:50:00Z"
 meta_description = """
 Everyone can start their community on Matrix by creating a Matrix Space.
@@ -13,150 +13,99 @@ Community Managers can then tweak the Space to their needs.
 """
 +++
 
-We strongly recommend getting familiar with Matrix as an individual. It's easy
-to use and to get started, but the amount of clients and providers in the wild
-can make things overwhelming for newcomers. Follow [the users documentation](/docs/chat_basics)
-to get started using Matrix as an individual.
+我们强烈建议你以个人身份熟悉 Matrix。应用程序（客户端）和提供者这些概念比较高级，初次了解，请按照[用户文档](/docs/chat_basics) 以个人身份开始使用 Matrix。
 
-For this tutorial we're going to assume your provider (homeserver) is
-Matrix.org. You will see later that Matrix's flexibility allows you to start a
-community on Matrix.org and then move to another provider if you want. You can
-also bridge your existing community to Matrix to progressively migrate people
-without a traumatic big platform switch.
+在本教程中，我们假设你的提供者（homeserver）是 Matrix.org。稍后你将看到，Matrix 的灵活性允许你在 Matrix.org 上启动一个社区，然后根据需要转移到其他提供者。你还可以将现有社区桥接到 Matrix 上，逐步迁移社区成员而无需进行大规模的平台切换。
 
-Here are a couple of screenshots to see how a thriving community can look like
-on Matrix.
+下面是几张截图，可以看到一个繁荣的社区在 Matrix
+在 Matrix 上。
 
 ![](../bridging/from-matrix.png)
 ![](../bridging/from-discord.png)
 
-We recommend you to set up a dummy community to play around first, and then you
-can move on creating your full community and/or bridging your existing one to
-Matrix.
+我们建议你先建立一个虚拟社区来玩玩，然后再创建完整的社区和或将现有社区桥接到Matrix
 
-The first thing to do whether you are starting a new community or trying to
-bridge one to Matrix is to create a Space for it. You can think of Matrix Spaces
-as equivalents of Slack Workspaces, or Discord Servers. They're a way to group
-people and rooms.
+无论是创建新社区还是尝试将现有社区与 Matrix 为其创建一个空间。你可以将 Matrix 空间相当于 Slack 工作空间或 Discord 服务器。它是一个大的主题，旗下所有资源都为了这个主题。
 
-## Creating & sharing a Space
+## 创建和共享空间
 
-Click on the + on the leftmost column of Element to create a new Space
+点击 Element 最左边一列的 + 号创建新空间
 
 ![](space-click-plus.png)
 
-In this example, we're creating a public space for people who enjoy warm drinks.
+在这个例子中，我们要为喜欢喝热饮的人创建一个公共空间。
 
 ![](space-public-private.png)
 
-You can add a picture, name and description for your Space to be easier to find
-and for people to have a good idea about what's happening in your community.
+你可以为你的空间添加图片、名称和描述，以便于查找你可以添加图片、名称和说明，以便人们更容易找到你的空间，并了解你所在社区的情况。
 
 ![](space-details.png)
 
-Note there's also an address field. The address of your Space consists of a name
-(sometimes called the local part) and of the domain of your provider. Here the
-provider domain is `matrix.org` because we're creating the space from an account
-that was created on Matrix.org
+请注意还有一个地址栏。你的空间地址由名称(有时称为本地部分)和提供者的域名。这里的提供者的域名是 `matrix.org`，因为我们是用在 Matrix.org 上创建的账户创建空间的。
 
-People can join your Space if it's public and you give them the address, which
-is much easier to jot down or to memorise than a full [matrix.to](https://matrix.to)
-link!
+如果你的空间是公开的，并且你提供了地址，那么人们就可以加入你的空间。这个地址比完整的 [matrix.to](https://matrix.to) 更有辨识度。
 
-Later if you decide to deploy your own provider or to rent one as a service
-(see [the list of providers we're aware of](/ecosystem/hosting) for more
-details), you will be able to add new addresses to this Space and change the
-main one.
+之后，如果你决定部署自己的提供者或租用一个提供者作为服务(详见[我们知道的提供者列表](/ecosystem/hosting))，你也可以向该空间添加新地址并更改主地址。
 
-You can then add a couple of rooms to get started with the basics... and voilà,
-you now have a community on Matrix!
+然后，你就可以添加几个聊天室，开始基本操作......瞧、你现在在 Matrix 上拥有了一个社区！
 
-## Adding rooms
+## 添加聊天室
 
-You can play around in the rooms, but look! We forgot to create a room for
-people who enjoy hot cocoas! Click on the Space avatar in the left bar to go to
-the Space's index
+你可以在聊天室里随意玩耍，但是看！我们忘了热可可爱好者聊天室！点击左侧栏中的空间头像，进入空间的索引
 
 ![](space-click-avatar.png)
 
-From there you can see the list of all the rooms in your Space. The rooms you
-see in the left panel are the rooms you are a member of, and the rooms you see
-in the main panel are all the rooms in your Space. Since you're the
-administrator of the Space they're the same to you, but that will not
-necessarily be the case for new joiners.
+在那里你可以看到你空间中所有聊天室的列表。在左侧面板中在左侧面板中看到的聊天室是你的成员聊天室，而在主面板中看到的聊天室是你的所有成员聊天室。则是你空间中的所有聊天室。由于你是对你来说是一样的，但对新加入者来说就不一定了。
 
-Click on "Add" then on "New room" to create the room for hot cocoa drinkers.
+
+点击 "添加"，然后点击 "新建聊天室"，为热可可爱好者创建聊天室。
 
 ![](space-add-room-menu.png)
 
-Here again, you can give the room a name, a description, an address, and make it
-public or private.
+在这里，你还可以给聊天室起一个名字、一个描述、一个地址，并将其设置为公开或不公开。
 
 ![](space-add-room-details.png)
 
-Note that you can create a private room in a public Space. People who are not
-members of this room will not see it in the Space index, and people who are
-member of this room will see it in their room list when they're in this Space.
-There's a third mode: visible to members of the Space. You can change the room
-visibility at any point in the room settings.
+请注意，你可以在公共空间中创建私人聊天室。非成员将不会在空间索引中看到该聊天室，而该聊天室的成员则会在他们的聊天室列表中看到该聊天室。还有第三种模式：空间成员可见。你可以在聊天室可见性。
 
-## History visibility
+## 历史可见性
 
-The room visibility is not the only important parameter in a room. You can also
-change the _history_ visibility so people can either:
-- Not see what was said in this room before they joined
-- See what happened since the option was selected
-- See what happened since they were invited in the room
-- See what happened since they joined
+聊天室可见性并不是聊天室中唯一重要的参数。你还可以
+更改_历史记录_可见性，这样人们就可以
+- 看不到他们加入之前在此聊天室内说过的话
+- 查看选项被选中后发生的事情
+- 查看他们被邀请进入聊天室后发生的事情
+- 查看他们加入后发生的事情
 
-To change this setting, click on the `i` on the top right, then on "Room 
-settings"
+要更改此设置，请单击右上角的 `i`，然后单击 "聊天室设置"
 
 ![](room-settings-right-bar.png)
 
-Alternatively you can click on the room name in the header and click on
-"Settings"
+或者，你也可以点击标题中的聊天室名称，然后点击设置
 
 ![](room-settings-header.png)
 
-Finally head to the "Security & Privacy" tab
+最后点击 "安全和隐私" 选项卡
 
 ![](room-security-privacy.png)
 
-There is no best practice here, it depends entirely on your preferences and what
-you want for your community.
+这里没有最佳做法，完全取决于你的喜好和你对社区的要求。
 
-## Basic Moderation
+## 基本管理
 
-For a good overview of what are roles, power levels, redactions, and how to keep
-a group safe at the room level, please head to
-[the group chat documentation](/docs/chat_basics/private-group-chat/#keeping-the-group-safe).
+有关什么是角色、权力级别、删节以及如何在聊天室级别保证群组安全的概述，请访问聊天室级别的群组安全，请访问
+[群聊文档](/docs/chat_basics/private-group-chat/#keeping-the-group-safe)。
 
-## Advanced moderation
+### 高级管理
 
-Basic moderation is enough for small groups, but it tends not to scale too well
-as the number of people and rooms in a community grow. Indeed, the basic 
-moderation decisions you take are only enforced room by room. If you wanted to
-ban someone from your entire community, you would have to ban them from all the
-rooms manually. Tedious, and not efficient!
+对于小型群组来说，基本控制就足够了，但随着群组人数和聊天室数量的增加，需要更高级的管理方式。事实上，你做出的基本 管理决策只能逐个聊天室执行。如果你想禁止某人进入整个社区，就必须手动禁止他进入所有聊天室。这样做既繁琐又不高效！
 
-The Matrix.org Foundation created a bot called mjolnir, which you could consider
-as the security guard of your community. You tell it in a control room to
-perform certain actions against one or a group of individuals, and the mjolnir
-bot enforces it in all the rooms. More information in the [moderation section](/docs/communities/moderation).
+Matrix.org 基金会创建了一个名为 mjolnir 的机器人，你可以将其视为作为社区的保安。你可以在控制室告诉它对一个人或一群人采取某些行动，然后 mjolnir 机器人就会在所有聊天室执行。更多信息请参阅 [管理部分](/docs/communities/moderation)。
 
-## Moving to another provider
+## 移至其他提供者
 
-The community you have just created with an account on matrix.org will have
-room addresses ending with `:matrix.org`. This is not an issue, but if you want
-to get addresses ending with `:your-org.com`, you need to get your own Matrix
-instance for that domain.
+你刚刚在 matrix.org 上创建的社区的聊天室地址都是以 `:matrix.org` 结尾。这不是问题，但如果你想如果你想获得以 `:your-org.com` 结尾的地址，就需要为该域名创建自己的 Matrix 实例。
 
-Additionally, moving to your own provider will give your administrators more
-control over rooms and accounts created there. One of the appeals of Matrix is
-its decentralised nature. But some organisations may need to have local
-centralisation of power to stay in control of their official communications.
+此外，迁移到你自己的提供者，就可以对账号/空间/聊天室有更多的管理权限。Matrix 的吸引力之一在于它的分散性。有些组织需要本地通信，有些组织则需要全球通信。
 
-Finally, if you get your own Matrix instance, you can deploy your own bridges
-too and you should see a general improvement in performance over matrix.org
-which can sometimes be a bit busy. More information in the [dedicated section](/docs/communities/switching-providers/).
+最后，如果你有了自己的 Matrix 实例，你也可以部署自己的网桥。与 matrix.org 相比，性能会普遍提高。Matrix.org 有时会有点忙。更多信息请参阅[专用部分]（/docs/communities/switching-providers/）。

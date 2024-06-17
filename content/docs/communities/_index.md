@@ -1,5 +1,5 @@
 +++
-title = "Communities"
+title = "社区"
 weight = 200
 template = "docs/with_menu.html"
 render = false
