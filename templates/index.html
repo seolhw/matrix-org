@@ -6,14 +6,14 @@
 {% endblock head_extra %}
 {% block content %}
 {% set sponsors_data = load_data(path="content/sponsors.toml") %}
-<div id="elections-banner">
+<!-- <div id="elections-banner">
  <p>We are holding our first Governing Board elections. Find all the information <a href="./governing-board/elections/2024">on the elections page.</a></p>
-</div>
+</div> -->
 <div id="frontpage">
     <div id="hero" class="section">
         <div class="hero_content">
             <img src="images/matrix-logo-white.svg" alt="The Matrix Logo" />
-            <h2>An open network for secure, decentralised communication</h2>
+            <h2>安全、分布式通信的开放网络</h2>
         </div>
         <div id="hero_curve1"></div>
         <div id="hero_curve2"></div>
@@ -23,10 +23,10 @@
     <div id="use-case-personal" class="section">
         <div class="use-case-personal-content">
             <div class="col">
-                <h2>Chat with friends, family, communities and co-workers</h2>
+                <h2>与朋友、家人、社区和同事聊天</h2>
                 <div class="cta-row">
-                    <a href="/try-matrix" class="call-to-action">Start a conversation</a>
-                    <a href="/support" class="call-to-action secondary">Support us</a>
+                    <a href="/try-matrix" class="call-to-action">开始对话</a>
+                    <a href="/support" class="call-to-action secondary">支持我们</a>
                 </div>
             </div>
             <img src="assets/frontpage/personal-graphic.svg" alt="An artist view of a chat timeline." />
@@ -34,17 +34,17 @@
         <div id="personal_bottom"></div>
     </div>
     <div id="use-case-community" class="section">
-        <h2>A cozy, safe, supercharged place for your community</h2>
+        <h2>一个舒适、安全、充满活力的社区场所</h2>
         <div class="cta-row">
-            <a href="/docs/communities" class="call-to-action inverted">Reclaim your Space</a>
+            <a href="/docs/communities" class="call-to-action inverted">重启空间</a>
         </div>
         <img src="assets/frontpage/community-graphic.svg" alt="An artist view of a chat community." />
     </div>
     <div id="complex-apps" class="section">
         <div class="col">
-            <h2>Build advanced, rich communication applications on top of Matrix.</h2>
+            <h2>在 Matrix 基础上构建先进、丰富的通信应用程序。</h2>
             <div class="cta-row">
-                <a href="/docs/technical" class="call-to-action">Start building apps</a>
+                <a href="/docs/technical" class="call-to-action">开始构建应用程序</a>
             </div>
         </div>
         <img src="/element-call.webp" id="complex-apps-image"
@@ -57,16 +57,15 @@
         <img id="homeserver" src="/assets/frontpage/homeserver.svg" alt="A conceptual representation of a homeserver" />
         <img id="federation_visual" src="/assets/frontpage/federation-visual.svg"
             alt="A conceptual representation of the federation between homeservers" />
-        <h2>Build on Matrix</h2>
+        <h2>基于Matrix</h2>
         <p>
-            Matrix is a rich ecosystem of clients, servers, bots and application
-            services. Find out more in our developer documentation.
+            Matrix 是一个包含客户端、服务器、机器人和应用服务的丰富生态系统。更多信息，请参阅我们的开发人员文档。
         </p>
         <div class="cta-col">
             <a href="https://github.com/matrix-org" class="call-to-action inverted"><img
-                    src="/assets/frontpage/github-mark.svg" alt="" /> We're open source</a>
-            <a href="https://spec.matrix.org" class="call-to-action inverted">Browse the Specification</a>
-            <a href="/support" class="call-to-action inverted secondary">Support us</a>
+                    src="/assets/frontpage/github-mark.svg" alt="" /> 我们是开源的</a>
+            <a href="https://spec.matrix.org" class="call-to-action inverted">浏览规范</a>
+            <a href="/support" class="call-to-action inverted secondary">支持我们</a>
         </div>
     </div>
 </div>
