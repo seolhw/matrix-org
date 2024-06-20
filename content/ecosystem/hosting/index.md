@@ -1,9 +1,9 @@
 +++
-title = "Hosting"
+title = "自托管"
 template = "ecosystem/hosting.html"
 weight = 4
 extra.summary = """
-Everyone can host their Matrix server, but not everybody wants to. These are the providers the Matrix.org Foundation knows about. 
+每个人都可以托管自己的 Matrix 服务器，但不是每个人都愿意这样做。这些是 Matrix.org 基金会知道的提供商。
 """
 +++
 

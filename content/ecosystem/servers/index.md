@@ -1,16 +1,12 @@
 +++
-title = "Servers"
+title = "服务端"
 template = "ecosystem/servers.html"
 weight = 1
 extra.summary = """
-Advanced users may want to run a homeserver by themselves for more independence
-and sovereignty. Here are the servers advanced users can run.
+高级用户可能希望自己运行一个 homeserver，以获得更多的独立性和自主权。以下是高级用户可以运行的服务器。
 """
 +++
 
-You don't need to run your homeserver yourself to participate in the Matrix
-ecosystem. If you are not a tech-savvy person or are not interested into running
-your own homeserver, head to the [Chat Basics](/docs/chat_basics/) to discover
-how to chat using Matrix.
+参与 Matrix 生态系统并不需要自己运行家庭服务器。如果你不精通技术或对运行自己的家庭服务器不感兴趣，请访问 [聊天基础](/docs/chat_basics/) 了解如何使用 Matrix 聊天。
 
 {{ all_servers() }}

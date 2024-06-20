@@ -1,10 +1,9 @@
 +++
-title = "Bridges"
+title = "桥接器"
 weight = 2
 template = "ecosystem/bridges.html"
 extra.summary = """
-Bridges allow you to connect Matrix to a third-party platform, and interact
-seamlessly.
+通过桥接器，您可以将 Matrix 与第三方平台连接起来，实现无缝互动。
 """
 +++
 

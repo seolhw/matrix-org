@@ -3,8 +3,7 @@ title = "SDKs"
 weight = 3
 template = "ecosystem/sdks.html"
 extra.summary = """
-Develop great apps, bots, and bridges. Focus on what you do best. Let the SDKs
-do all the heavy lifting.
+开发优秀的应用程序、机器人和桥接器，专注于自己最擅长的领域，让 SDK 完成所有繁重的工作。
 """
 +++
 
