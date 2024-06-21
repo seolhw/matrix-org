@@ -1,5 +1,5 @@
 header = [
-    { title = "技术规范", href = "https://spec.matrix.org" },
+    # { title = "技术规范", href = "https://spec.matrix.org" },
     { title = "关于", href = "/about/" },
     { title = "博客", href = "/blog/" },
     { title = "文档", href="/docs/" },
