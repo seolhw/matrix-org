@@ -1,3 +1,3 @@
 {
-  "installCommand": "export LANG=en_US.UTF-8 && dnf copr enable fz0x1/zola && dnf install zola"
+  "installCommand": "dnf install tar -y  && version='v0.17.2' && archive=\"zola-${version}-x86_64-unknown-linux-gnu.tar.gz\" && curl -L \"https://github.com/getzola/zola/releases/download/${version}/${archive}\" -o \"$archive\" && tar \"$archive\""
 }
